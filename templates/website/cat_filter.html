@@ -1,0 +1,34 @@
+{% extends 'home/web_base.html'%}
+{% block title %}HOME PAGE{% endblock %}
+{% block content%}
+<!--Topside-->
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    Statistics
+                </div>
+                <div class="card-body">
+                    {% for product in product%}
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <a class="text-decoration-none text-dark"
+                                href="{% url 'website-product-detail' product.id %}">
+                                <div class="card my-card shadow text-center p-3">
+
+                                    {{product.title}}
+                                    {{product.selling_price}}
+                                    <img src={{product.image.url}} class="img-fluid" />
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

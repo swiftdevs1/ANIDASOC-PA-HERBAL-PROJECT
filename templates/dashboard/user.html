@@ -1,0 +1,53 @@
+{% extends 'home/base.html'%}
+{% block title %}USER'S PAGE{% endblock %}
+{% block content%}
+{% include 'home/card.html'%}
+
+
+<!--Table-->
+<!--Table-->
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4"></div>
+        <div class="col-md-12">
+            <table class="table bg-white">
+                <thead class="bg-success">
+                    <tr class="text-white">
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><a class="btn btn-warning btn-sm text-white"
+                                href="{% url 'dashboard-profile'%}">View</a>
+                        </th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a class="btn btn-warning btn-sm text-white" href="">View</a>
+                        </th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><a class="btn btn-warning btn-sm text-white" href="">View</a>
+                        </th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!--End Table-->
+{% endblock%}

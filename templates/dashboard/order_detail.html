@@ -1,0 +1,72 @@
+{% extends 'home/base.html'%}
+{% block title %}ORDER PAGE{% endblock %}
+{% block content%}
+{% include 'home/card.html'%}
+
+
+<!--Table-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <hr>
+            <h3 class="text-success">Order Details</h3>
+            <hr>
+            <p><span class="font-weight-bold text-success">Order ID: </span>#ORDER_{{ord_obj.id}}</p>
+            <p><span class="font-weight-bold text-success">Order Status: </span>{{ord_obj.order_status}}</p>
+            <p><span class="font-weight-bold text-success">Ordered on:
+                </span>{{ord_obj.created_at}}({{ord_obj.created_at|timesince}})ago</p>
+            <p><span class="font-weight-bold text-success">Customer Information: </span>By {{ord_obj.ordered_by}},
+                ({{ord_obj.mobile}})</p>
+            <p><span class="font-weight-bold text-success">Shipping Address: </span>By {{ord_obj.shipping_address}},
+                ({{ord_obj.email}})</p>
+            <h4 class="text-success mt-3">Ordered Items</h4>
+            <div class="col-md-12">
+                <table class="table bg-white">
+                    <thead class="bg-success">
+                        <tr class="text-white">
+                            <th>SN</th>
+                            <th>Image</th>
+                            <th>Product</th>
+                            <th>Rate</th>
+                            <th>Quantity</th>
+                            <th>subtotal</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cp in ord_obj.cart.cartproduct_set.all %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td><img src="{{cp.product.image.url}}" class="img-fluid"
+                                    style="height: 55px; object-fit: contain">
+                            </td>
+                            <td>{{cp.product.title}}</td>
+                            <td>{{cp.rate}}</td>
+                            <td>{{cp.quantity}}</td>
+                            <td>{{cp.subtotal}}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <th colspan='5' class="text-right"> TOTAL</th>
+                            <th>GH¢{{ord_obj.total}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+                <form action="{% url 'change-order-status' ord_obj.id %}" method="POST">
+                    {% csrf_token %}
+                    <select name="status"
+                        style="border:1px solid green; outline: none; padding: 5px; margin-top: 20px;">
+                        {% for i, j in allstatus %}
+                        <option value="{{i}}">{{j}}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="btn btn-success mb-2">Change</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End Table-->
+{% endblock%}
