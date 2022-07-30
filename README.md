@@ -8,7 +8,7 @@
 * Background
 * Objectives
 * Technologies Used
-* ChunkIT Key features
+* Web Key features
 * Product specialization
 * Project Status
 
