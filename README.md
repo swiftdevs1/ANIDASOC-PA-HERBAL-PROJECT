@@ -49,5 +49,6 @@ Project is in progress
 # Github Collaboration
 1. Fork this repository and create a project folde on your local manchine
 2. Navigate to the terminal (pointing to your project folder/directory), Clone and then open it up on your prefered code editor
+
 git clone https://github.com/swiftdevs1/ANIDASOC-PA-HERBAL-PROJECT.git
 
