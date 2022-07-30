@@ -47,5 +47,5 @@ Mobile Phones and Laptops
 # Project Status
 Project is in progress
 
-
+git clone https://github.com/<your github username>/Pro_Team_41_Chunk-File.git
 
