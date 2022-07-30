@@ -51,13 +51,13 @@ Project is in progress
 2. Navigate to the terminal (pointing to your project folder/directory), Clone and then open it up on your prefered code editor
 
 ```
-git clone https://github.com/<your github username>/Pro_Team_41_Chunk-File.git
+git clone https://github.com/swiftdevs1/ANIDASOC-PA-HERBAL-PROJECT.git
 ```
 3. Open terminal and set upsream branch:
 ```
-git remote add upstream https://github.com/zuri-training/Pro_Team_41_Chunk-File.git
+git remote add upstream hhttps://github.com/swiftdevs1/ANIDASOC-PA-HERBAL-PROJECT.git
 ```
-4. Pull upstream to get the latest update from the original repo (https://github.com/zuri-training/Pro_Team_41_Chunk-File.git)
+4. Pull upstream to get the latest update from the original repo (https://github.com/swiftdevs1/ANIDASOC-PA-HERBAL-PROJECT.git)
 ```
 git pull upstream main
 ```
