@@ -1,0 +1,19 @@
+{% extends 'home/base.html'%}
+{% block title %}EDIT PRODUCT PAGE{% endblock %}
+{% block content%}
+{% load crispy_forms_tags %}
+
+<div class="row my-4">
+    <div class="col-md-6 offset-md-3 p-3 bg-white">
+        <h3 class="text-success fw-bold">Edit Product</h3>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <a class="btn btn-secondary btn-sm" href="{% url 'dashboard-product' %}">Cancel</a>
+            <input class="btn btn-info" type="submit" value="Confirm">
+        </form>
+    </div>
+</div>
+<!--End Table-->
+{% endblock%}

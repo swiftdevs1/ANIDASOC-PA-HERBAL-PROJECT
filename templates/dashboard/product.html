@@ -1,0 +1,56 @@
+{% extends 'home/base.html'%}
+{% block title %}PRODUCT PAGE{% endblock %}
+{% block content%}
+{% include 'home/card.html'%}
+{% load crispy_forms_tags %}
+
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-4">
+            <div class="border bg-white p-3">
+                <h4 class="text-success">Add Product</h4>
+                <hr>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <input class="btn btn-success btn-block" type="submit" value="Add Product">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <table class="table bg-white">
+                <thead class="bg-success">
+                    <tr class="text-white">
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Activity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td><img src={{product.image.url}} class="img-fluid" style="height: 75px; object-fit: contain;"
+                                alt=""></td>
+                        <td>{{product.title}}</td>
+                        <td>{{product.category}}</td>
+                        <td>{{product.selling_price}}</td>
+                        <td>
+                            <a class="btn btn-success btn-sm" href="{% url 'dashboard-edit-product' product.id %}"><i
+                                    class="fas fa-pen"></i></a>
+                            <a class="btn btn-success btn-sm" href="{% url 'dashboard-delete-product' product.id %}"><i
+                                    class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!--End Table-->
+{% endblock%}

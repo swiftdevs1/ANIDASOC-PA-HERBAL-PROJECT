@@ -1,0 +1,25 @@
+{% extends 'home/base.html'%}
+{% block title %}CATEGORY PAGE{% endblock %}
+{% block content%}
+{% include 'home/card.html'%}
+{% load crispy_forms_tags %}
+
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-12">
+            <div class="border bg-white p-3">
+                <h4 class="text-success">Add Category</h4>
+                <hr>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <input class="btn btn-success btn-block" type="submit" value="Add Category">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--End Table-->
+{% endblock%}
