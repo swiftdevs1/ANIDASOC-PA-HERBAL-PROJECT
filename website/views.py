@@ -35,8 +35,10 @@ def category(request):
 def collection(request, slug):
     if(Category.objects.filter(slug=slug)):
         product = Product.objects.filter(category__slug=slug)
+        category_name = Category.objects.filter(slug=slug).first()
         context = {
-            'product':product
+            'product':product,
+            'category_name':category_name
         }
     else:
         messages.warning(request, 'no such category exist')
