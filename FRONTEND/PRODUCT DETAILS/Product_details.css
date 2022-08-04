@@ -1,0 +1,254 @@
+.checked{
+     color: orange;
+     font-size: 13px;
+     margin-top: -10%;
+    }
+    .not-checked{
+     color: white;
+     font-size: 13px;
+     margin-top: -10%;
+    }
+    .price{
+      font-size: 10px;
+      margin-left: 3rem;
+      font-weight: 700;
+    }
+
+  .product-img{
+    width: 9rem;
+    height: 12.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1.3rem;
+    margin-top: 1rem;
+  }
+  .card{
+    border-radius: 15px;
+    margin: 20px 20px;
+    margin-left: 10%;
+    background-color:#D9E9E4;
+    cursor: pointer;
+    
+  }
+  .medicine-name{
+    margin-left: -2%;
+    font-weight: 600;
+  }
+  .add{
+    margin-left: 30%;
+    font-weight: 900;
+    font-size: x-large;
+  }
+  .main-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+
+  .desc{
+    margin-top: 3%;
+    margin-left: 10%;
+  }
+  @media screen and (max-width: 480x) {
+    .desc{
+    margin-top: 70%;
+    }
+     }
+
+    
+
+   @media screen and (max-width: 540px) {
+	.card {
+	justify-content: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  height: 40rem;
+	}
+   }
+   @media screen and (max-width: 600px) {
+	.card {
+	justify-content: center;
+  align-items: center;
+  margin-right: 35%;
+	}
+   }
+
+   @media screen and (max-width: 820px) {
+    .card {
+    justify-content: center;
+    align-items: center;
+    margin-left: 40%;
+    }
+     }
+
+   
+   @media screen and (max-width: 940px) {
+	.main-container {
+		display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    flex-wrap: nowrap;
+    margin-bottom: 20%;
+	}
+   }
+   @media screen and (max-width: 1024px) {
+	.desc {
+	font-size: 12px;
+  margin-top: 40%;
+	}
+   }
+   .header{
+    margin-top: 7%;
+   text-align: center;
+    margin-bottom: 3%;
+    text-decoration: underline;
+    color: blueviolet;
+   }
+
+   @media screen and (max-width: 480px) {
+    .header{
+    margin-top: 25%;
+    margin-bottom: 10%;
+    }
+     }
+   
+
+
+  .navbar {
+	background-color:#3fb7b6;
+}
+
+.navbar_img {
+		width: 30px;
+}
+
+
+#navmenu {
+    margin-right: 310px;
+}
+#navmenu a:hover{
+    color: rgb(255, 174, 0);
+}
+
+.navbar-toggler {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    transition: .5s ease-in-out;
+}
+
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+    border: 0;
+    position: relative;
+}
+
+.navbar-toggler span {
+    margin: 0;
+    padding: 0;
+}
+
+.toggler-icon {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #fff;
+    border-radius: 1px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.middle-bar {
+    margin-top: 0px;
+}
+ /* State when the navbar is collapsed */
+
+.navbar-toggler.collapsed .top-bar {
+    position: absolute;
+    top: 0px;
+    transform: rotate(0deg);
+}
+
+.navbar-toggler.collapsed .middle-bar {
+    opacity: 1;
+    position: absolute;
+    top: 10px;
+    filter: alpha(opacity=100);
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+    position: absolute;
+    top: 20px;
+    transform: rotate(0deg);
+}
+
+/* when navigation is clicked */
+
+.navbar-toggler .top-bar {
+    top: inherit;
+    transform: rotate(135deg);
+}
+
+.navbar-toggler .middle-bar {
+    opacity: 0;
+    top: inherit;
+    filter: alpha(opacity=0);
+}
+
+.navbar-toggler .bottom-bar {
+    top: inherit;
+    transform: rotate(-135deg);
+}
+
+/* Color of 3 lines */
+
+.navbar-toggler.collapsed .toggler-icon {
+    background: linear-gradient( 263deg, rgb(255, 255, 255) 0%, rgba(0,212,255,1) 100% );
+}
+
+.item, .carousel-inner img{
+    height: 100% !important;
+    width:  100% !important;
+}
+.pdetails {
+  text-align: justify;
+}
+
+.para{
+  width: 70%;
+  margin-left: 20%;
+  text-align: justify;
+}
+
+
+.desc-title{
+  margin-left: 20%;
+  margin-top: -30%;
+  color: #3fb7b6;
+}
+
+footer{
+	text-align: center;
+	width: 100%;
+	position: relative;
+	bottom: 0;
+	background:#5b9ad4;
+	color: white;
+	padding: 50px 0 15px;
+    /* margin-top: 125px;
+	border-top-left-radius: 125px;
+	border-top-right-radius: 125px; */
+  margin-top: 100px;
+	font-size: 13px;
+	line-height: 20px;
+}
