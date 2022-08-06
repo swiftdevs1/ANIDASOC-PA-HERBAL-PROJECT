@@ -12,6 +12,7 @@
       font-size: 10px;
       margin-left: 3rem;
       font-weight: 700;
+      color: white;
     }
 
   .product-img{
@@ -26,19 +27,29 @@
     border-radius: 15px;
     margin: 20px 20px;
     margin-left: 10%;
-    background-color:#D9E9E4;
+    background-color:teal;
     cursor: pointer;
     
   }
   .medicine-name{
     margin-left: -2%;
     font-weight: 600;
+    color: white;
+    font-size: 13px;
   }
+
   .add{
     margin-left: 30%;
     font-weight: 900;
     font-size: x-large;
+    color: white;
   }
+
+  @media screen and (max-width: 1280px) {
+    .add{
+    font-size: 10px;
+    }
+     }
   .main-container{
     display: flex;
     flex-direction: row;
@@ -233,9 +244,16 @@
 
 .desc-title{
   margin-left: 20%;
-  margin-top: -30%;
+  margin-top: -31%;
   color: #3fb7b6;
+  font-size: 25px;
 }
+
+@media screen and (max-width: 1280px) {
+  .desc-title{
+  font-size: 20px;
+  }
+   }
 
 footer{
 	text-align: center;
