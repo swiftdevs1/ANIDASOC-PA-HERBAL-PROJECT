@@ -7,6 +7,9 @@
 	<link rel="stylesheet" href="CSS/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+	<link rel="stylesheet" href="css/style.css" />
+	<link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
 	<title>ABOUT</title>
 	<nav class="navbar navbar-expand-lg navbar-light  pb-0 fixed-top ">
 		<a class="navbar-brand" href="#">
@@ -64,6 +67,152 @@
 		    </ul>
 
 	</nav>
+
+
+	<!-- Internal styles for only the testimonies -->
+	<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.slide-container{
+  max-width: 1120px;
+  width: 100%;
+  padding: 40px 0;
+}
+.slide-content{
+  margin: 0 40px;
+  overflow: hidden;
+  border-radius: 25px;
+}
+.card{
+  border-radius: 25px;
+  background-color:aliceblue;
+}
+.image-content,
+.card-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+}
+.image-content{
+  position: relative;
+  row-gap: 5px;
+  padding: 25px 0;
+}
+.overlay{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 25px 25px 0 25px;
+}
+.overlay::before,
+.overlay::after{
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -40px;
+  height: 40px;
+  width: 40px;
+}
+.card-image{
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background: #FFF;
+  padding: 3px;
+}
+.card-image .card-img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #4070F4;
+}
+.name{
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin-top: -10%;
+}
+.description{
+  font-size: 14px;
+  color: #707070;
+  text-align: center;
+}
+.button{
+  border: none;
+  font-size: 16px;
+  color: #FFF;
+  padding: 8px 16px;
+  background-color: #4070F4;
+  border-radius: 6px;
+  margin: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.button:hover{
+  background: #265DF2;
+}
+
+.swiper-navBtn{
+  color: #6E93f7;
+  transition: color 0.3s ease;
+}
+.swiper-navBtn:hover{
+  color: #4070F4;
+}
+.swiper-navBtn::before,
+.swiper-navBtn::after{
+  font-size: 20px;
+  border-radius: 60px;
+  width: 85%;
+}
+.swiper-button-next{
+  right: 0;
+  margin-top: 18%;
+  margin-right: 45%;
+  color:blue;
+}
+.swiper-button-prev{
+  left: 0;
+  margin-top: 18%;
+  margin-left: 45%;
+}
+.swiper-pagination-bullet{
+  background-color: #6E93f7;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active{
+  background-color: #4070F4;
+}
+
+@media screen and (max-width: 768px) {
+  .slide-content{
+    margin: 0 10px;
+  }
+  .swiper-navBtn{
+    display: none;
+  }
+}
+
+.testi-title{
+	text-align: center;
+	font-size: 25px;
+}
+	</style>
+
+
+
 </head><br>
 <body>
 	<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -102,7 +251,163 @@
 		ducimus accusamus deleniti assumenda cum? Culpa harum earum id at inventore tempora?
 	Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil error temporibus dolor sequi quo, voluptatibus ab reiciendis, ipsum consequatur excepturi vel. Voluptatem et architecto quam id, consequatur alias officiis placeat!
 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus possimus facilis nostrum eligendi at, nisi deleniti cum quasi id porro accusamus necessitatibus qui maiores commodi voluptatibus. Libero, mollitia veniam. Rerum.
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum minima non reiciendis tenetur eum accusantium, impedit possimus quis nulla aliquid optio, est obcaecati molestiae tempora tempore vel nostrum veritatis maiores!</p>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum minima non reiciendis tenetur eum accusantium, impedit possimus quis nulla aliquid optio, est obcaecati molestiae tempora tempore vel nostrum veritatis maiores!</p><br><br><br><br><br>
+  
+<h1 class="testi-title">TESTIMONIES</h1>
+<div class="slide-container swiper testimony">
+	<div class="slide-content">
+	    <div class="card-wrapper swiper-wrapper">
+		   <div class="card swiper-slide">
+			  <div class="image-content">
+				 <span class="overlay"></span>
+
+				 <div class="card-image">
+					<img src="https://images.unsplash.com/photo-1568990545613-aa37e9353eb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d2hpdGUlMjBtYW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="" class="card-img">
+				 </div>
+			  </div>
+
+			  <div class="card-content">
+				 <h2 class="name">Emmanuel Yidana</h2>
+				 <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+
+				 <button class="button">View More</button>
+			  </div>
+		   </div>
+		   <div class="card swiper-slide">
+			  <div class="image-content">
+				 <span class="overlay"></span>
+
+				 <div class="card-image">
+					<img src="data:image/jpeg;base64,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" alt="" class="card-img">
+				 </div>
+			  </div>
+
+			  <div class="card-content">
+				 <h2 class="name">Emmanuel Yidana</h2>
+				 <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+
+				 <button class="button">View More</button>
+			  </div>
+		   </div>
+		   <div class="card swiper-slide">
+			  <div class="image-content">
+				 <span class="overlay"></span>
+
+				 <div class="card-image">
+					<img src="data:image/jpeg;base64,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" alt="" class="card-img">
+				 </div>
+			  </div>
+
+			  <div class="card-content">
+				 <h2 class="name">Emmanuel Yidana</h2>
+				 <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+
+				 <button class="button">View More</button>
+			  </div>
+		   </div>
+		   <div class="card swiper-slide">
+			  <div class="image-content">
+				 <span class="overlay"></span>
+
+				 <div class="card-image">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn9DxWlx7Gxuhe86Vkfx_TxCCzhnH-WuK31Q&usqp=CAU" alt="" class="card-img">
+				 </div>
+			  </div>
+
+			  <div class="card-content">
+				 <h2 class="name">Emmanuel Yidana</h2>
+				 <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+
+				 <button class="button">View More</button>
+			  </div>
+		   </div>
+		   <div class="card swiper-slide">
+			  <div class="image-content">
+				 <span class="overlay"></span>
+
+				 <div class="card-image">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOOts4s6sYNZYC4agxGnhZOF093XheHdL_sQ&usqp=CAU" alt="" class="card-img">
+				 </div>
+			  </div>
+
+			  <div class="card-content">
+				 <h2 class="name">Emmanuel Yidana</h2>
+				 <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+
+				 <button class="button">View More</button>
+			  </div>
+		   </div>
+		   <div class="card swiper-slide">
+			  <div class="image-content">
+				 <span class="overlay"></span>
+
+				 <div class="card-image">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShoO048efDvqG0evqX1AMzFZa-zUwuoo2ABg&usqp=CAU" alt="" class="card-img">
+				 </div>
+			  </div>
+
+			  <div class="card-content">
+				 <h2 class="name">Emmanuel Yidana</h2>
+				 <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+
+				 <button class="button">View More</button>
+			  </div>
+		   </div>
+		   <div class="card swiper-slide">
+			  <div class="image-content">
+				 <span class="overlay"></span>
+
+				 <div class="card-image">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMT5ZEgoqTWKkbAT7PLg_fYJPvWWqGllIzEQ&usqp=CAU" alt="" class="card-img">
+				 </div>
+			  </div>
+
+			  <div class="card-content">
+				 <h2 class="name">Emmanuel Yidana</h2>
+				 <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+
+				 <button class="button">View More</button>
+			  </div>
+		   </div>
+		   <div class="card swiper-slide">
+			  <div class="image-content">
+				 <span class="overlay"></span>
+
+				 <div class="card-image">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMT5ZEgoqTWKkbAT7PLg_fYJPvWWqGllIzEQ&usqp=CAU" alt="" class="card-img">
+				 </div>
+			  </div>
+
+			  <div class="card-content">
+				 <h2 class="name">Emmanuel Yidana</h2>
+				 <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+
+				 <button class="button">View More</button>
+			  </div>
+		   </div>
+		   <div class="card swiper-slide">
+			  <div class="image-content">
+				 <span class="overlay"></span>
+
+				 <div class="card-image">
+					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0YYm-7CiER2Ye93u86sJpDaetcZmAcd-Ntw&usqp=CAU" alt="" class="card-img">
+				 </div>
+			  </div>
+
+			  <div class="card-content">
+				 <h2 class="name">Emmanuel Yidana</h2>
+				 <p class="description">The lorem text the section that contains header with having open functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+
+				 <button class="button">View More</button>
+			  </div>
+		   </div>
+	    </div>
+	</div>
+
+	<div class="swiper-button-next swiper-navBtn"></div>
+	<div class="swiper-button-prev swiper-navBtn"></div>
+ </div>
+ 
 	   <footer>
 		<h5>ABOUT US</h5>
 		<div class="logo pt-2">
@@ -116,6 +421,9 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum minima non reicie
 		    <a href=""><i class="bi bi-twitter media_icons text-white"></i></a>
 		</div>                          
 	 </footer>
-	   <script src="JS/bootstrap.min.js"></script>
+	<script src="JS/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+	<script src="About.js"></script>
 </body>
 </html>
