@@ -57,3 +57,5 @@ class CustomerLoginView(FormView):
         else:
             return self.success_url
 
+def profile(request):
+    return render(request, 'profile.html')
