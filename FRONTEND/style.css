@@ -2,11 +2,11 @@
 	padding: 0;
 	margin: 0;
 }
-
-
+body{
+    background-color: #ffff;
+}
 #section{
-	background-color: #e3f8f8;
-
+	background-color: #ffff;
 }
 
 /* Navigation Bar */
@@ -18,7 +18,6 @@
 .navbar_img {
 		width: 30px;
 }
-
 
 #navmenu {
     margin-right: 310px;
@@ -127,103 +126,19 @@
 }
 #navmenu {
 	padding-left: 200px;
-} 
+}
+/* END OF NAVBAR */
 
 
-.carousel  {
-	overflow: hidden;
+.map {
+    height: 100%;
+    width: 100%;
 }
 
-form{
-      padding-left: 350px;
-}
-.search {
-	width: 130px;
-	height: 20px;
-	background-color: white;
-	border-radius:  30px;
-	display: flex;
-	align-items: center;
-	padding: 0px 10px 0px 10px;
+.media_icons {
+    font-size: 1.4rem;
 }
 
-.search > i {
-	font-size: 12px;
-	color: #777;
-}
-
-.search > input {
-	flex: 1;
-	height: 20px;
-	width: 50px;
-	border: none;
-	outline: none;
-	font-size: 18px;
-	padding-left: 10px;
-
-}
-
-
-/* Carousel  */
-.carousel-inner{
-     height: 390px;
-	 padding-top: 3px;
-}
-
-.item, .carousel-inner img{
-    height: 100% !important;
-    width:  100% !important;
-}
-
-/* End of Navigation Bar */
-
-
-
-/* Product Cards  */
-
-.bg-body{
-	object-fit: contain;
-	width: 230px;
-}
-
-h4{
-	font-size: 20px;
-	font-weight: bolder;
-	color: #3fb7b6;
-}
-.card-body img {
-	object-fit: contain;
-   	width: 170px;
-}
-
-.card-text.ratings {
-	color: orangered;
-	text-align: center;
-	font-size: 7px;
-	
-}
-
-.card-text, .price {
-	margin: 0;
-	
-}
-.price{
-	color:#3fb7b6;
-	font-weight: bolder;
-}
- .card-body p {
-	color: #2c4b68;
-	font-size: 10px;
-	font-weight: bolder;
-	text-align: center;
-}
-.add_Icon{
-	color: orangered;
-	opacity: 0.8;
-	font-size: 9px;
-}
-
-/* End of Product Cards */
 
 /* Footer */
 
@@ -232,26 +147,9 @@ footer{
 	width: 100%;
 	position: relative;
 	bottom: 0;
-	margin-top: 2.5cm;
 	background:#5b9ad4;
 	color: white;
 	padding: 50px 0 15px;
 	font-size: 13px;
 	line-height: 20px;
-}
-/* 
-.log{
-	display: flex;
-	align-items: center;
-} */
-.social_media_icons{
-	align-items: center;
-}
-
-.social_media_icons > i {
-	padding: 20px;
-}
-
-h5{
-	text-align: center;
 }
