@@ -128,6 +128,11 @@ footer{
   line-height: 20px;
 }
 
+.searchbar{
+   position: absolute;
+   margin-left: 1%;
+   margin-top: 0.5%;
+ }
 
 
 /* h1{
