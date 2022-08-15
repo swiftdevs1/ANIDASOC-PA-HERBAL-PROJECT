@@ -64,3 +64,18 @@ h1{
 font{
 	color: red;
 }
+
+@media screen and (max-width: 300px) {
+	button{
+	font-size: 7px;
+	width: 120%;
+	}
+	 }
+
+	 
+@media screen and (max-width: 900px) {
+	.col-md{
+	width: 200%;
+	margin-left: -50%;
+	}
+	 }
