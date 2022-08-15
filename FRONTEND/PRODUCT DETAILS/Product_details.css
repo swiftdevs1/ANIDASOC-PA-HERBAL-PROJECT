@@ -26,7 +26,7 @@
     border-radius: 15px;
     margin: 20px 20px;
     margin-left: 10%;
-    background-color:white;
+    background-color:rgb(122, 92, 92);
     cursor: pointer;
     
   }
@@ -264,4 +264,10 @@ footer{
   margin-top: 100px;
 	font-size: 13px;
 	line-height: 20px;
+}
+
+.searchbar{
+  position: absolute;
+  margin-left: 1%;
+  margin-top: 0.5%;
 }
