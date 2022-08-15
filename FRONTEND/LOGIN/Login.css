@@ -24,7 +24,9 @@
 	align-items: center;
 	width: 770px;
 	height: 90vh;
-	 border: 20px solid black;
+	 border: 25px solid black;
+	 border-top-width: 40px;
+	 border-bottom-width: 40px;
 	 border-left-width: 20px;
 }
 
@@ -86,13 +88,49 @@ img{
 .sign{
 	position: relative;
 }
-
+/* @media screen and (max-width: 600px) {
+	.form-control{
+	 font-size: 7px;
+		 }
+		  } */
 .anchor{
 	position: absolute;
 	margin-top: 2%;
 	margin-left: 10%;
 }
 
+@media screen and (max-width: 1000px) {
+	.anchor{
+	  margin-top: -0.00625px;
+		 }
+		  }
+
 .bi-google {
 	color: black;
 }
+
+@media screen and (max-width: 900px) {
+	img{
+	display: none;
+	}
+	 }
+
+@media screen and (max-width: 900px) {
+		.container{
+		border: none;
+		}
+		 }
+   
+@media screen and (max-width: 1000px) {
+		.formContainer{
+		background-color:  rgb(208, 208, 208);
+		}
+		 }
+
+@media screen and (max-width: 1000px) {
+	    .form-control{
+		font-size: 13px;
+			}
+			 }
+
+ 
