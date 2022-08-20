@@ -4,17 +4,14 @@
 
 <head>
     <!-- Required meta tags -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/apple-touch-icon.png'%}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png'%}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/favicon-16x16.png'%}">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <meta charset="utf-8" />
+    <meta name="referrer" content="no-referrer-when-downgrade">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <!-- Bootstrap CSS -->
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png'%}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
 
@@ -84,15 +81,15 @@
                     </li>
 
                     <li class="d-lg-none d-md-block d-xl-none d-sm-block">
-                        <a href="#"><i class="material-icons">apps</i><span>apps</span></a>
-                    </li>
-
-                    <li class="d-lg-none d-md-block d-xl-none d-sm-block">
                         <a href="#"><i class="material-icons">person</i><span>user</span></a>
                     </li>
 
                     <li class="d-lg-none d-md-block d-xl-none d-sm-block">
-                        <a href="#"><i class="material-icons">settings</i><span>setting</span></a>
+                        <a href="{% url 'change-password'%}"><i
+                                class="material-icons">settings</i><span>setting</span></a>
+                    </li>
+                    <li class="d-lg-none d-md-block d-xl-none d-sm-block">
+                        <a href="{% url 'logout' %}"><i class="fas fa-power-off"></i><span>Logout</span></a>
                     </li>
                 </div>
                 <li class="item">
@@ -122,9 +119,14 @@
                     </ul>
                 </li>
 
+
                 <li class="item">
-                    <a href="{% url 'dashboard-subscriber'%}"><i class="fas fa-box"></i><span>subcribers</span></a>
+                    <a href="{% url 'dashboard-post'%}"><i class="fas fa-box"></i><span>post</span></a>
                 </li>
+                <li class="item">
+                    <a href="{% url 'dashboard-message'%}"><i class="fas fa-box"></i><span>message</span></a>
+                </li>
+
 
                 <!--
                      <li class="dropdown">
@@ -187,19 +189,20 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <span class="material-icons">apps</span>
-                                    </a>
-                                </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">
                                         <span class="material-icons">person</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">
+                                    <a class="nav-link" href="{% url 'change-password'%}">
                                         <span class="material-icons">settings</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout'%}">
+                                        <i class="fas fa-power-off"></i><span></span>
                                     </a>
                                 </li>
                             </ul>
@@ -217,7 +220,9 @@
         </div>
     </div>
 
-    <!-- Optional JavaScript -->
+    <!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Script-->
+    <!--End of Tawk.to Script-->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
     <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>

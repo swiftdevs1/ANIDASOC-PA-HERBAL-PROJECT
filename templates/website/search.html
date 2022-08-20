@@ -1,0 +1,42 @@
+{% extends 'home/web_base.html'%}
+{% block title %}HOME PAGE{% endblock %}
+{% block content%}
+{% load static %}
+
+<div id="section">
+    {% include 'website/corousel.html'%}
+
+    <!-- OUR PRODUCTS-->
+    <section class="pt-3 products" style="background-color: #b9e8b6;">
+        <div class="container services">
+            <h4 class="text-center"> Showing searching result(s) for <span style="color: black;">"
+                    {{request.GET.keyword}} "</span>
+            </h4>
+            <!--ROW1-->
+            <div class="row text-center gy-lg-1  justify-content-center justify-content-sm-center">
+                {% for p in result %}
+                <div class="col-lg-3 col-sm-6 col-md-6">
+                    <div class="shadow-lg p-3 mb-2 bg-body rounded ">
+                        <div class="card-body text-center">
+                            <a href="{% url 'website-product-detail' p.id %}">
+                                <img src="{{p.image.url}}">
+                            </a>
+                            <hr>
+                            <p class="card-text ratings">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </p>
+                            <p class="price"> GH¢ {{p.selling_price}}</p>
+                            <p class="card-text">{{ p.title}}</p>
+                            <a href="{% url 'website-add-to-cart' p.id %}" class="add_Icon"><i
+                                    class="fa-solid fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+    </section>
+</div>
+{% endblock%}

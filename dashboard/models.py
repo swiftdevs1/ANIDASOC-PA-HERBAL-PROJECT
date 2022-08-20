@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from user.models import Customer
 
 # Create your models here.
 class Category(models.Model):
@@ -34,7 +33,7 @@ class Product(models.Model):
 
 class Cart(models.Model):
     customer = models.ForeignKey(
-        Customer, on_delete=models.SET_NULL, null=True, blank=True)
+        User, on_delete=models.SET_NULL, null=True, blank=True)
     total = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 

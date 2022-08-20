@@ -1,10 +1,13 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from dashboard.models import *
+from website.models import *
 from django.views.generic import View, TemplateView,CreateView
-from.forms import CheckoutForm
+from.forms import CheckoutForm,ContactForm
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
+from django.db.models import Q
+from django.utils.html import strip_tags
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -53,7 +56,6 @@ def product_details(request,pk):
 
 class AddToCartView(EcomMixin,TemplateView):
     template_name = "website/add_to_cart.html"
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # get product id from requested url
@@ -82,7 +84,7 @@ class AddToCartView(EcomMixin,TemplateView):
                     cart=cart_obj, product=product_obj, rate=product_obj.selling_price, quantity=1, subtotal=product_obj.selling_price)
                 cart_obj.total += product_obj.selling_price
                 cart_obj.save()
-
+                return redirect('website-home')
         else:
             cart_obj = Cart.objects.create(total=0)
             self.request.session['cart_id'] = cart_obj.id
@@ -155,7 +157,7 @@ class CheckOutView(EcomMixin, CreateView):
     success_url = reverse_lazy('website-home')
     
     def dispatch(self, request, *args, **kwargs): 
-        if request.user.is_authenticated and request.user.customer:
+        if request.user.is_authenticated:
             pass
         else:
             return redirect('/user/?next=/checkout/"')
@@ -184,3 +186,38 @@ class CheckOutView(EcomMixin, CreateView):
         else:
             return redirect('website-home')
         return super().form_valid(form)
+
+
+def blog(request):
+    posts = Blog.objects.all().order_by('-id')
+    context = {
+        'posts':posts
+    }
+    return render(request,'website/blogs.html',context)
+
+def about(request):
+    return render(request,'website/about.html')
+
+def contact(request):
+    return render(request,'website/contact.html')
+
+def send(request):
+    form = ContactForm(request.POST)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Message successfully sent")
+        return redirect('contact')
+    else:
+        for field, error in form.errors.items():
+            error = strip_tags(error)
+            messages.error(request,f"{field}: {error}")
+            return redirect('contact')
+
+def search(request):
+    if request.method == 'GET':
+        kw = request.GET['keyword']
+        result = Product.objects.filter(Q(title__icontains=kw) | Q(description__icontains=kw))
+        context = {
+            'result':result
+        }
+    return render(request,'website/search.html',context)

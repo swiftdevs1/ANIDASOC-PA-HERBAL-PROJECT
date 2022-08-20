@@ -3,6 +3,11 @@ from . import views
 
 urlpatterns = [
 path("", views.home, name="website-home"),
+path("blog", views.blog, name="blog"),
+path("about", views.about, name="about"),
+path("contact", views.contact, name="contact"),
+path("send", views.send, name="send"),
+path("search", views.search, name="search"),
 path("category", views.category, name="website-cat"),
 path("collection/<str:slug>", views.collection, name="collection"),
 path("product/detail/<int:pk>", views.product_details, name="website-product-detail"),

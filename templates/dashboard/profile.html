@@ -14,33 +14,40 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-8">
-                            <span class="h4"> Profile Information</span> <a class="btn btn-info btn-sm float-right"
-                                href="">Edit</a>
+                            <span class="h4"> Profile Information</span>
                             <hr>
                             <table class="table bg-white table-borderless">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Name</th>
-                                        <td>Mark</td>
+                                        <th scope="row">Username</th>
+                                        <td>{{user.username}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Firstname</th>
+                                        <td>{{user.profile.firstname}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Lastname</th>
+                                        <td>{{user.profile.lastname}}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Email</th>
-                                        <td>mark123@gmail.com</td>
+                                        <td>{{user.email}}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Phone</th>
-                                        <td>00992283833</td>
+                                        <td>{{user.profile.phone}}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Address</th>
-                                        <td>House Number 22 Dr. Ababio Street Ghana</td>
+                                        <td>{{user.profile.address}}</td>
                                     </tr>
                                 </tbody>
                             </table>
 
                         </div>
-                        <div class="col-md-4">
-                            <img class="img-thumbnail" src="./media/profile-img1.jpg" alt="">
+                        <div class="col-md-4 my-5">
+                            <img class="img-thumbnail" src="{{user.profile.image.url}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -48,6 +55,8 @@
         </div>
 
     </div>
+    <button class="btn btn-success text-white"><a href="{% url 'dashboard-user' %}" class="text-white">
+            back</a></button>
 
 </div>
 

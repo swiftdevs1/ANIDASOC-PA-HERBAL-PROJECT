@@ -7,113 +7,31 @@
   {% include 'website/corousel.html'%}
 
   <!-- OUR PRODUCTS-->
-  <section class="pt-3 products">
+  <section class="pt-3 products" style="background-color: #b9e8b6;">
     <div class="container services">
       <h4 class="text-center"> Our Products </h4>
       <!--ROW1-->
       <div class="row text-center gy-lg-1  justify-content-center justify-content-sm-center">
+        {% for p in product %}
         <div class="col-lg-3 col-sm-6 col-md-6">
           <div class="shadow-lg p-3 mb-2 bg-body rounded ">
             <div class="card-body text-center">
-              <img src="{% static 'img/mixture_1.png'%}">
+              <a href="{% url 'website-product-detail' p.id %}">
+                <img src="{{p.image.url}}">
+              </a>
               <hr>
               <p class="card-text ratings">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
               </p>
-              <p class="price"> GHC40 </p>
-              <p class="card-text">Kokoo <span class="add_Icon"> <i class="fa-solid fa-plus"></i></span></p>
+              <p class="price"> GH¢ {{p.selling_price}}</p>
+              <p class="card-text">{{ p.title}}</p>
+              <a href="{% url 'website-add-to-cart' p.id %}" class="add_Icon"><i class="fa-solid fa-plus"></i></a>
             </div>
           </div>
         </div>
-
-        <div class="col-lg-3 col-sm-6 col-md-6">
-          <div class="shadow-lg p-3 mb-2 bg-body rounded">
-            <div class="card-body text-center">
-              <img src="images/mixture.png">
-              <hr>
-              <p class="card-text ratings">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </p>
-              <p class="price"> GHC30 </p>
-              <p class="card-text">women <span class="add_Icon"> <i class="fa-solid fa-plus"></i></span></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-sm-6 col-md-6">
-          <div class="shadow-lg p-1 mb-2 bg-body rounded">
-            <div class="card-body text-center">
-              <img src="images/womenp.png">
-              <hr>
-              <p class="card-text ratings">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </p>
-              <p class="price"> GHC50 </p>
-
-              <p class="card-text">Alpha GPC <span class="add_Icon"> <i class="fa-solid fa-plus"></i></span></p>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-lg-3 col-sm-6 col-md-6">
-          <div class="shadow-lg p-3 mb-5 bg-body rounded">
-            <div class="card-body text-center">
-              <img src="images/mencaps.png">
-              <hr>
-              <p class="card-text ratings">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </p>
-              <p class="price"> GHC50 </p>
-              <p class="card-text ">Alpha GPC <span class="add_Icon"> <i class="fa-solid fa-plus"></i></span></p>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-      <!-- ROW2-->
-      <div class="row text-center justify-content-center justify-content-sm-center ">
-        <div class="col-lg-3 col-sm-6 col-md-6">
-          <div class="shadow-lg p-3 mb-2 bg-body rounded ">
-            <div class="card-body text-center">
-              <img src="images/mixture_1.png">
-              <hr>
-              <p class="card-text ratings">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </p>
-              <p class="price"> GHC40 </p>
-              <p class="card-text">Kokoo <span class="add_Icon"> <i class="fa-solid fa-plus"></i></span></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-sm-6 col-md-6">
-          <div class="shadow-lg p-3 mb-2 bg-body rounded ">
-            <div class="card-body text-center">
-              <img src="images/mixture_1.png">
-              <hr>
-              <p class="card-text ratings">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </p>
-              <p class="price"> GHC40 </p>
-              <p class="card-text">Kokoo <span class="add_Icon"> <i class="fa-solid fa-plus"></i></span></p>
-            </div>
-          </div>
-        </div>
-
+        {% endfor %}
       </div>
 
   </section>

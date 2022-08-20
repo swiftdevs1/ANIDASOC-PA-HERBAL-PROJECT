@@ -1,0 +1,54 @@
+{% extends 'home/web_base.html'%}
+{% block title %}CONTACT PAGE{% endblock %}
+{% block content%}
+{% load static %}
+<!-- CONTACT PAGE SECTION -->
+<section class style="background-color: #b9e8b6;">
+    <div class="col-lg-12">
+        <div class="section text-center"> <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31763.67653356546!2d-0.2085515977775762!3d5.6464504880387505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9c7dd4389017%3A0x8a140595c282296d!2sLegon%2C%20Accra!5e0!3m2!1sen!2sgh!4v1659923650161!5m2!1sen!2sgh"
+                width="1290" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div><br>
+    <div class="p-5 row">
+        <div class="col-lg-4 ps-5 pe-3 py-5">
+            <h5 class="fs-5 text-start pb-4">Contact Info</h5>
+            <h5 class="fs-6 text-start">Address: 56 North-Legon,</h5>
+            <h5 class="fs-6 text-start pb-2">Ghana.</h5>
+            <h5 class="fs-6 text-start pb-2">Phone: + 233 (0) 500 22 99 111</h5>
+            <h5 class="fs-6 text-start pb-3">Email: anidasocherbal@gmail.com</h5>
+
+            <p class="text-start">
+                <a href="#"><i class="bi bi-instagram media_icons pe-3 text-dark"></i></a>
+                <a href="#"><i class="bi bi-whatsapp media_icons pe-3 text-dark"></i></a>
+                <a href="#"><i class="bi bi-twitter media_icons pe-3 text-dark"></i></a>
+                <a href="#"><i class="bi bi-facebook media_icons text-dark"></i></a>
+            </p>
+        </div>
+        <form class="col-lg-5 py-5" method="post" action="/send">
+            {% csrf_token %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            <div class="mb-3">
+                <input type="text" name="name" class="form-control border-2" id="exampleFormControlInput2"
+                    placeholder="Full Name:" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" name="email" class="form-control border-2" id="exampleFormControlInput1"
+                    placeholder="Email address:" required>
+            </div>
+            <div class="mb-4">
+                <textarea name="message" class="form-control border-2" id="exampleFormControlTextarea1" rows="3"
+                    placeholder="Type your message here:" required></textarea>
+            </div>
+            <div class="text-start">
+                <button class="btn btn-dark px-4" type="submit">Send</button>
+            </div>
+        </form>
+    </div><br>
+</section>
+{% endblock%}

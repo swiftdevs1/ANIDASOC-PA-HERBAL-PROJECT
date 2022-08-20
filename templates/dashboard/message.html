@@ -1,0 +1,43 @@
+{% extends 'home/base.html'%}
+{% block title %}MESSAGES{% endblock %}
+{% block content%}
+{% include 'home/card.html'%}
+
+
+
+<!--Graphs-->
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-12">
+            <table class="table bg-white">
+                <thead class="bg-success">
+                    <tr class="text-white">
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for message in messages %}
+                    <tr>
+                        <td>{{message.name}}</td>
+                        <td>{{message.email}}</td>
+                        <td> <textarea name="" id="" cols="30" rows="4"
+                                style="outline: none; border: none; resize: none;">{{message.message}}</textarea></td>
+                        <td>
+                            <a class="btn btn-success btn-sm" href="{% url 'del_message' message.id %}"><i
+                                    class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!--End Table-->
+{% endblock%}

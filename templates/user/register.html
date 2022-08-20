@@ -1,26 +1,80 @@
-{% extends 'home/web_base.html'%}
-{% block title %}Register Page{% endblock %}
-{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<!-- === Coding by CodingLab | www.codinglabweb.com === -->
+<html lang="en">
 
-{% block content %}
-<style>
-    .errorlist {
-        color: red;
-    }
-</style>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <hr>
-            <h3>Customer Registration </h3>
-            <hr>
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button class="btn btn-primary">Register</button>
-            </form>
-            <p>Already have an account? <a href="{% url 'user-login' %}">Login Here</a></p>
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="{% static 'css/register.css'%}">
+
+    <!--<title>Login & Registration Form</title>-->
+</head>
+
+<body style="background-color: #b9e8b6;">
+
+    <div class="container">
+        <div class="forms">
+            <!-- Registration Form -->
+            <div class="form signup">
+                <span class="title">Registration</span>
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}} " role="alert">
+                    <p style="color: red;">{{message}}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="input-field">
+                        <input type="text" name="username" placeholder="Enter your Username" required>
+                        <i class="uil uil-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" name="email" placeholder="Enter your email" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="password" class="password" placeholder="Create a password"
+                            required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="password1" class="password" placeholder="Confirm a password"
+                            required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="termCon" required>
+                            <label for="termCon" class="text">I accepted all terms and conditions</label>
+                        </div>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="submit" value="Signup">
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                    <span class="" style="margin-top: -20px;">Already have an account?
+                        <a href="{% url 'user-login'%}" class="text login-link">Login Now</a>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-{% endblock%}
+
+    <script src="{% static 'js/login.js'%}"></script>
+</body>
+
+</html>
