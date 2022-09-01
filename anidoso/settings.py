@@ -137,7 +137,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'asert/')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 #STATIC_ROOT = (BASE_DIR/"asert/")
 LOGIN_REDIRECT_URL = 'website-home'
