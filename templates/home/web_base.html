@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{% static 'css/index.css'%}">
   <link rel="stylesheet" href="{% static 'css/About.css'%}">
   <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  <link rel="stylesheet" href="{% static 'css/blog.css'%}">
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
   <link rel="stylesheet" href="{% static 'css/Product_reviews.css'%}">
   <script src="{% static 'js/bootstrap.min.js'%}"></script>
@@ -72,12 +73,12 @@
           </li>
 
           {% if user.is_authenticated %}
-          <li style="color: white;">
-            <a href="{% url 'profile' %}"><span id="text">profile</span>
+          <li style="color:black;">
+            <a href="{% url 'user_home' %}"><span id="text">orders</span>
             </a>
           </li>
-          <li style="color: white;">
-            <a href="{% url 'user-logout' %}"><i class="fas fa-power-off"></i><span id="text"></span>
+          <li style="color: black;">
+            <a href="{% url 'user-logout' %}"><i class="fas fa-sign-out	"></i><span id="text"></span>
             </a>
           </li>
           {% else %}
@@ -179,6 +180,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
   <script src="{% static 'js/About.js'%}"></script>
+  <script src="{% static 'js/main.js'%}"></script>
 
 </body>
 

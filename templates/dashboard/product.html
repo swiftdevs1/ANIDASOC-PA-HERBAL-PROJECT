@@ -14,13 +14,14 @@
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form|crispy}}
-                    <input class="btn btn-success btn-block" type="submit" value="Add Product">
+                    <input class="btn  btn-block text-white" type="submit" value="Add Product"
+                        style="background:  #1e6225;">
                 </form>
             </div>
         </div>
         <div class="col-md-8">
             <table class="table bg-white">
-                <thead class="bg-success">
+                <thead class="" style="background:  #1e6225;">
                     <tr class="text-white">
                         <th scope="col">Image</th>
                         <th scope="col">Name</th>
@@ -38,10 +39,10 @@
                         <td>{{product.category}}</td>
                         <td>{{product.selling_price}}</td>
                         <td>
-                            <a class="btn btn-success btn-sm" href="{% url 'dashboard-edit-product' product.id %}"><i
-                                    class="fas fa-pen"></i></a>
-                            <a class="btn btn-success btn-sm" href="{% url 'dashboard-delete-product' product.id %}"><i
-                                    class="fas fa-trash"></i></a>
+                            <a class="btn text-white btn-sm" style="background:  #1e6225;"
+                                href="{% url 'dashboard-edit-product' product.id %}"><i class="fas fa-pen"></i></a>
+                            <a class="btn text-white btn-sm" style="background:  #1e6225;"
+                                href="{% url 'dashboard-delete-product' product.id %}"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     {% endfor %}

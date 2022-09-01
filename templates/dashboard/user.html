@@ -10,7 +10,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-12">
             <table class="table bg-white">
-                <thead class="bg-success">
+                <thead class="" style="background:  #1e6225;">
                     <tr class="text-white">
                         <th scope="col">#</th>
                         <th scope="col">username</th>
@@ -21,12 +21,12 @@
                 <tbody>
                     {% for customer in customers %}
                     <tr>
-                        <th scope="row"><a class="btn btn-success btn-sm text-white"
-                                href="{% url 'dashboard-profile' customer.id %}">View</a>
+                        <th scope="row"><a class="btn  btn-sm text-white" style="background:  #1e6225;"
+                                href="{% url 'dashboard-profile_detail' customer.id %}">View</a>
                         </th>
                         <td>{{customer.username}}</td>
                         <td>{{customer.profile.phone}}</td>
-                        <td>{{customer.username}}</td>
+                        <td>{{customer.email}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -199,7 +199,7 @@ ul li:hover ul.dropdown {
   width: 300px;
   display: flex;
   align-items: center;
-  background-color: var(--nav-color);
+  background-color: #95e885;
   padding: 3px;
   border-radius: 6px;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
@@ -221,7 +221,7 @@ ul li:hover ul.dropdown {
   top: -4px;
   height: 12px;
   width: 12px;
-  background-color: var(--nav-color);
+  background-color: #95e885;
   transform: rotate(-45deg);
   z-index: -1;
 }

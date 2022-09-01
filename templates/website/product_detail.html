@@ -3,9 +3,12 @@
 
 <head>
     {% load static %}
+    {% load crispy_forms_tags %}
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png'%}">
 
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
@@ -23,7 +26,7 @@
 
 <body>
     <nav>
-        <div class="nav-bar">
+        <div class=" nav-bar">
             <i class='bx bx-menu sidebarOpen'></i>
             <span class="logo navLogo">
                 <img src="{% static 'img/logo.png'%}" class="logo3" style="height: 50px; width:50px">
@@ -62,19 +65,25 @@
                     <li><a href="{% url 'about' %}">About</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
                     <li><a href="{% url 'blog' %}">blogs & post</a></li>
-                    <li style="color: white;">
-                        <a href=""><span id="text">Sign in</span>
-                        </a>
-                    </li>
-                    {% for message in messages %}
-                    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
-                        {{message}}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    {% endfor %}
-                    <li style="color: white;"> <a href="{% url 'mycart'  %}"><i id="icon" class="fa-solid fa-cart-plus">
+
+                    <li style="color: black;"> <a href="{% url 'mycart'  %}"><i id="icon" class="fa-solid fa-cart-plus">
                             </i></a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li style="color: black">
+                        <a href="{% url 'user_home' %}"><span id="text">orders</span>
+                        </a>
+                    </li>
+                    <li style="color: black;">
+                        <a href="{% url 'user-logout' %}"><i class="fas fa-power-off"></i><span id="text"></span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li style="color: black;">
+                        <a href="{% url 'user-login' %}"><span id="text">Sign in</span>
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
 
@@ -94,7 +103,7 @@
                         {{product.title}}
                     </h3>
                     <div class="row pt-1 pb-1">
-                        <p class="col-sm-3 fs-5 fw-bold text-start">GH₵{{product.marked_price}}</p>
+                        <p class="col-sm-3 fs-5 fw-bold text-start">GH₵{{product.selling_price}}</p>
                         <p class="col-sm-5 text-end stars">
                             <i class="bi bi-star-fill text-warning"></i>
                             <i class="bi bi-star-fill text-warning"></i>
@@ -103,7 +112,6 @@
                             <i class="bi bi-star-half text-warning"></i>
                         </p>
                         <p class="col-sm-4 text-end fs-5">
-                            (1 Customer review)
                         </p>
                     </div>
 
@@ -111,8 +119,10 @@
                         <p class="pdetails fs-6 pt-3 pb-2">{{product.description}}
                         </p>
                         <div class="row pb-4 ms-1">
-                            <button type="button" class="col-5 col-sm-4 btn btn-secondary"><a
-                                    href="{% url 'website-add-to-cart' product.id %}">Add to cart</button></a>
+                            <button type="button" class="col-5 col-sm-4 btn btn-success"><a
+                                    href="{% url 'website-add-to-cart' product.id %}"
+                                    style="color: black;text-decoration: none;">Add to
+                                    cart </button></a>
                         </div>
                     </div>
                     <p class="fs-6 fw-bold py-3">Category: {{product.category}}</p>
@@ -122,77 +132,52 @@
     </section>
 
     <!-- ****************** MORE DETAILS COMPONENT ************************ -->
-    <section id="Reviews">
+    <section id="Reviews" style="background-color: #b9e8b6;">
         <div class="bg-light ps-5">
-            <span class="ms-5  border border-0 pt-2 pb-3 px-5 fs-5 fw-bold text-dark">Reviews</span>
+            <span class="ms-5  border border-0 pt-2 pb-3 px-5 fs-5 fw-bold text-dark"
+                style="background-color: #b9e8b6;">Reviews</span>
         </div>
         <div class="container-fluid p-5">
             <div class="fs-3 pt-2 pb-5 fw-bold ps-3">
-                1 Review for Anidasoɔ Pa Herbal Mixture
+                Review for Anidasoɔ Pa Herbal Mixture
             </div>
             <!-- REVIEWER 1 -->
+            {% if reviews %}
+            {% for review in reviews %}
             <div class="container-fluid row row-centered pos pb-5 mb-5">
                 <div class="col-lg-3 pb-3 pe-3">
-                    <img src="{{product.image.url}}" class="img-float rounded-circle reviewimg" alt="Profile Photo">
+                    <img src="{{review.product.image.url}}" class="img-float rounded-circle reviewimg"
+                        alt="Profile Photo">
                 </div>
 
                 <div class="col-lg-9 border-start border-dark py-4">
                     <div class="row pt-1 pb-1 ps-2">
-                        <p class="col-sm-4 fs-6 fw-bold text-start">Francis Agyapong Appiah</p>
-                        <p class="col-sm-3 text-muted fs-6 text-end"><i>- 21st August, 2022.</i></p>
+                        <p class="col-sm-4 fs-6 fw-bold text-start">{{review.name}}</p>
+                        <p class="col-sm-3 text-muted fs-6 text-end"><i>- {{review.date}}.</i></p>
                         <p class="col-sm-5 text-end stars">
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-half text-warning"></i>
+                            <i class="bi bi-star-fill {% if review.rate > 4 %} text-warning {% endif %}"
+                                style="float: right;"></i>
+                            <i class="bi bi-star-fill {% if review.rate > 3 %} text-warning {% endif %}"
+                                style="float: right;"></i>
+                            <i class="bi bi-star-fill {% if review.rate > 2 %} text-warning {% endif %}"
+                                style="float: right;"></i>
+                            <i class="bi bi-star-fill {% if review.rate > 1 %} text-warning {% endif %}"
+                                style="float: right;"></i>
+                            <i class="bi bi-star-fill {% if review.rate > 2 %} text-warning {% endif %}"
+                                style="float: right;"></i>
                         </p>
-                        <p class="fs-6 pdetails">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Soluta, reprehenderit? Ipsa quisquam, rem alias pariatur ipsam non officia cumque
-                            consectetur suscipit vitae culpa nostrum et aut minima dignissimos quidem optio!
-                            Cupiditate sint quasi animi voluptatum ratione fugit at illo quos magnam autem
-                            voluptatibus distinctio aliquid eaque, dolorem quis repudiandae sunt! Ipsa odit
-                            alias maxime sed sint? Vero hic quasi esse repellat suscipit impedit aperiam qui
-                            consectetur facilis velit dolorum quod veritatis reiciendis pariatur ut quos,
-                            voluptatibus accusamus amet placeat quidem! Ducimus iste animi maxime ab perspiciatis?
-                            Praesentium laudantium unde a quidem consectetur hic exercitationem fuga dolores architecto
-                            quaerat. Est, porro laudantium unde a quidem consectetur hic porro?
+                        <p class="fs-6 pdetails">
+                            {{review.review}}
                         </p>
                     </div>
                 </div>
             </div>
+            {% endfor %}
+            {% else %}
+            <p class="fs-6 pdetails"> This product has no review yet
+            </p>
+            {% endif %}
 
-            <!-- REVIEWER 2 -->
-            <div class="container-fluid row row-centered pos pb-5 mb-5">
-                <div class="col-lg-3 pb-3 pe-3">
-                    <img src="{{product.image.url}}" class="img-float rounded-circle reviewimg" alt="Profile Photo">
-                </div>
-
-                <div class="col-lg-9 border-start border-dark py-4">
-                    <div class="row pt-1 pb-1 ps-2">
-                        <p class="col-sm-3 fs-6 fw-bold text-start">Foster Ayivi</p>
-                        <p class="col-sm-3 text-muted fs-6 text-end"><i>- 24th August, 2022.</i></p>
-                        <p class="col-sm-6 text-end stars">
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star-fill text-warning"></i>
-                            <i class="bi bi-star text-warning"></i>
-                        </p>
-                        <p class="fs-6 pdetails">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Soluta, reprehenderit? Ipsa quisquam, rem alias pariatur ipsam non officia cumque
-                            consectetur suscipit vitae culpa nostrum et aut minima dignissimos quidem optio!
-                            Cupiditate sint quasi animi voluptatum ratione fugit at illo quos magnam autem
-                            voluptatibus distinctio aliquid eaque, dolorem quis repudiandae sunt! Ipsa odit
-                            alias maxime sed sint? Vero hic quasi esse repellat suscipit impedit aperiam qui
-                            consectetur facilis velit dolorum quod veritatis reiciendis pariatur ut quos,
-                            voluptatibus accusamus amet placeat quidem! Ducimus iste animi maxime ab perspiciatis?
-                            Praesentium laudantium unde a quidem consectetur hic exercitationem fuga dolores architecto
-                            quaerat. Est, porro laudantium unde a quidem consectetur hic porro?
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- ADD A REVIEW -->
@@ -208,40 +193,47 @@
                 <h4 class="fs-6 fw-bold mt-2">
                     Your rating <sup><i class="bi bi-asterisk text-danger asterisk"></i></sup>
                 </h4>
-                <p class="stars mb-4">
-                    <a href="#"><i class="bi bi-star text-warning"></i></a>
-                    <a href="#"><i class="bi bi-star text-warning"></i></a>
-                    <a href="#"><i class="bi bi-star text-warning"></i></a>
-                    <a href="#"><i class="bi bi-star text-warning"></i></a>
-                    <a href="#"><i class="bi bi-star text-warning"></i></a>
-                </p>
+
             </div>
-            <form class="d-grid gap-2 col-8 mx-auto">
+            <form class="d-grid gap-2 col-8 mx-auto" method="post" action="/review">
+                {% csrf_token %}
+
+                <input type="hidden" name="pro_id" value="{{product.id}}">
+                <div class="cont">
+                    <div class="star-widget">
+                        <input type="radio" name="rate" id="rate-5" value="5">
+                        <label for="rate-5" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-4" value="4">
+                        <label for="rate-4" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-3" value="3">
+                        <label for="rate-3" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-2" value="2">
+                        <label for="rate-2" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-1" value="1">
+                        <label for="rate-1" class="fas fa-star"></label>
+
+                    </div>
+                </div>
                 <div class="mb-4">
                     <label for="exampleFormControlInput1" class="form-label fw-bold">Full Name <sup><i
                                 class="bi bi-asterisk text-danger asterisk"></i></sup></label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                    <input type="text" class="form-control" name="name" id="exampleFormControlInput1"
                         placeholder="Enter full name here." required>
-                </div>
-                <div class="mb-4">
-                    <label for="exampleFormControlInput1" class="form-label fw-bold">Email <sup><i
-                                class="bi bi-asterisk text-danger asterisk"></i></sup></label>
-                    <input type="email" class="form-control" id="exampleFormControlInput2"
-                        placeholder="name@example.com" required>
                 </div>
                 <div class="mb-4">
                     <label for="exampleFormControlTextarea1" class="form-label fw-bold">Your review <sup><i
                                 class="bi bi-asterisk text-danger asterisk"></i></sup></label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="10"
-                        placeholder="Leave your message here." required></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="review" rows="5"
+                        placeholder="Leave your review here." required></textarea>
                 </div>
+
                 <div class="mb-4 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Save my name and email for future
                         reviews.</label>
                 </div>
                 <div class="pb-5 mb-5">
-                    <button class="btn btn-dark" type="button">Submit</button>
+                    <button class="btn btn-success" type="submit">Submit</button>
                 </div>
             </form>
         </div>
@@ -294,7 +286,7 @@
 
     </script>
     <!-- Footer -->
-    <footer>
+    <footer style="background-color: #95e885;">
 
         <div class="logo">
             <img src="{% static 'img/logo.png'%}" class="navbar_img">

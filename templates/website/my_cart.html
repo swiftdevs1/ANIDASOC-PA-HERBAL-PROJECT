@@ -3,52 +3,60 @@
 {% block title %}Add to Cart{% endblock %}
 
 {% block content %}
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <hr>
-            <h4 class="text-center">ITEMS IN MY CART</h4>
-            <table class="table" style="margin-bottom: 180px;">
-                <thead>
-                    <tr>
-                        <th>SN</th>
-                        <th>Product</th>
-                        <th>Rate</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                        <th>Action</th>
+<div class="container" style="margin-top: 10%;">
+    <div class="row">
+        <div class="col-lg-12 mt-5">
+            <table class="table bg-white">
+                <thead class="bg-success">
+                    <tr class="text-white">
+                        <th scope="col">SN</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Rate</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">SubTotal</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for cp in cart.cartproduct_set.all %}
                     <tr>
                         <td>{{forloop.counter}}</td>
+                        <td><img src={{cp.product.image.url}} class="img-fluid"
+                                style="height: 75px; object-fit: contain;" alt="">
+                        </td>
                         <td>{{cp.product.title}}</td>
                         <td>{{cp.rate}}</td>
                         <td>{{cp.quantity}}</td>
                         <td>{{cp.subtotal}}</td>
                         <td>
-                            <a href="{% url 'managecart' cp.id %}?action=inc" class="btn btn-primary">+</a>
-                            <a href="{% url 'managecart' cp.id %}?action=dcr" class="btn btn-warning">-</a>
-                            <a href="{% url 'managecart' cp.id %}?action=rmv" class="btn btn-danger">x</a>
+                            <a href="{% url 'managecart' cp.id %}?action=inc" class="btn btn-success">+</a>
+                            <a href="{% url 'managecart' cp.id %}?action=dcr" class="btn btn-success">-</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-success btn-sm" href="{% url 'managecart' cp.id %}?action=rmv"><i
+                                    class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     {% endfor %}
                     <tr>
-                        <td colspan='4' class="text-right">Total</td>
+                        <td colspan='5' class="text-right">Total</td>
                         <td> <strong>GH¢{{cart.total}}</strong> </td>
                         {% if cart.cartproduct_set.all %}
-                        <td class=""><a href="{% url 'emptycart' %}" class="btn btn-primary">Empty Cart</a></td>
+                        <td class=""><a href="{% url 'emptycart' %}" class="btn btn-success">Empty Cart</a></td>
                         {% endif %}
                     </tr>
                     {% if cart.cartproduct_set.all %}
                     <tr>
-                        <th><a href="{% url 'checkout' %}" class="btn btn-primary">Check Out</a></th>
+                        <th><a href="{% url 'checkout' %}" class="btn btn-success">Check Out</a></th>
                     </tr>
                     {% endif %}
+
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
 {% endblock %}

@@ -1,0 +1,34 @@
+/* Footer */
+.navbar_img {
+  width: 30px;
+}
+
+footer {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  background: #95e885;
+  color: black;
+  padding: 50px 0 15px;
+  /*border-top-left-radius: 80px;
+	border-top-right-radius: 80px;*/
+  font-size: 13px;
+  line-height: 20px;
+}
+/* 
+.log{
+	display: flex;
+	align-items: center;
+} */
+.social_media_icons {
+  align-items: center;
+}
+
+.social_media_icons > i {
+  padding: 20px;
+}
+
+h5 {
+  text-align: center;
+}

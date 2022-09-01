@@ -1,4 +1,5 @@
 from django.db import models
+from dashboard.models import *
 
 # Create your models here.
 
@@ -17,4 +18,27 @@ class Contact(models.Model):
     message = models.TextField()
 
     def __str__(self):
+        return self.name
+        
+class About(models.Model):
+    message = models.TextField()
+    def __str__(self):
         return self.message
+
+
+    
+class Testimony(models.Model):
+    name = models.CharField(max_length=200)
+    text = models.TextField()
+    image = models.ImageField(upload_to="test_images")
+
+
+    def __str__(self):
+        return self.name
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    review = models.TextField()
+    rate = models.IntegerField(default=0)
+    date = models.DateTimeField(auto_now_add=True)

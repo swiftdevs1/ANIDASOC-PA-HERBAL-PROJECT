@@ -1,53 +1,223 @@
-{% extends 'home/web_base.html'%}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}Add to Cart{% endblock %}
-{% block content %}
-{% load crispy_forms_tags %}
+<head>
+    {% load static%}
+    {% load crispy_forms_tags %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <hr>
-            <h3 class="text-center">Items in the Cart</h3>
-            <a href="{% url 'mycart' %}" class="btn btn-primary">Update Cart</a>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>SN</th>
-                        <th>Product</th>
-                        <th>Rate</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for cp in cart.cartproduct_set.all %}
-                    <tr>
-                        <td>{{forloop.counter}}</td>
-                        <td>{{cp.product.title}}</td>
-                        <td>{{cp.rate}}</td>
-                        <td>{{cp.quantity}}</td>
-                        <td>{{cp.subtotal}}</td>
-                    </tr>
-                    {% endfor %}
-                    <tr>
-                    <tr>
-                        <td colspan='4' class="text-right">Total</td>
-                        <td> <strong>GH¢{{cart.total}}</strong> </td>
-                    </tr>
-                </tbody>
-            </table>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Font Awesome icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <!-- Css link  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="{% static 'css/checkout.css'%}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/c_footer.css'%}">
+    <title>CHECKOUT PAGE</title>
+</head>
+
+<body style="background-color: #b9e8b6;">
+    <nav>
+        <div class="nav-bar">
+            <i class='bx bx-menu sidebarOpen'></i>
+            <span class="logo navLogo">
+                <img src="{% static 'img/logo.png'%}" class="logo3" style="height: 50px; width:50px">
+                <a href="#" class="logo2">Anidasoc Pa Herbal</a>
+            </span>
+
+            <div class="menu">
+                <div class="logo-toggle">
+                    <span class="logo"><a href="#">Anidosoc Pa Herbal</a></span>
+                    <i class='bx bx-x siderbarClose'></i>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="{% url 'website-home'  %}">Home</a></li>
+                    <li>
+                        <a href="{% url 'website-cat'%}">Category</a>
+                    </li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="{% url 'blog' %}">blogs & post</a></li>
+                    <li style="color: black;"> <a href="{% url 'mycart'  %}"><i id="icon" class="fa-solid fa-cart-plus">
+                            </i></a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                    <li style="color: white;">
+                        <a href="{% url 'user_home' %}"><span id="text">orders</span>
+                        </a>
+                    </li>
+                    <li style="color: white;">
+                        <a href="{% url 'user-logout' %}"><i class="fas fa-power-off"></i><span id="text"></span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li style="color: black;">
+                        <a href="{% url 'user-login' %}"><span id="text">Sign in</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+
         </div>
-        <div class="col-md-6">
-            <hr>
-            <h3>Check Out Form</h3>
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{form|crispy}}
-                <button class="btn btn-info">Place Order</button>
-            </form>
+    </nav>
+
+    <div class="header mt-5">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="header__sigout_icon mt-4 ms-5 fs-3">
+                    <a href="{% url 'mycart' %}" style="color: #0b0b0b ;"><i class="fa fa-arrow-circle-left"
+                            aria-hidden="true"></i></a>
+                </div>
+
+            </div>
+            <div class="col-lg-9">
+                <div class="header__title mt-5">
+                    <h3> Order Summary</h3>
+                    <p> Check to verify your order </p>
+                </div>
+                <li>total <span style="font-size: 20px;color: rgb(227, 21, 21);">
+                        GH¢ {{cart.total}}
+                    </span></li>
+            </div>
         </div>
     </div>
-</div>
-{% endblock %}
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-6 d-flex ">
+                <table class="">
+                    <tbody>
+                        {% for cp in cart.cartproduct_set.all %}
+                        <tr class="first d-flex">
+                            <div>
+                                <td class="pro_img"><img src="{{cp.product.image.url}}" alt=""
+                                        style="width: 50%; margin-top: 8%; margin-left: 5%; "></td>
+                            </div>
+                            <div>
+                                <td>
+                                    <div style="margin-left: -90%; " class="second">
+                                        <h4> {{cp.product.title}}</h4>
+                                        <h6> GH¢ {{cp.rate}}</h6>
+                                        <h5 class=""> Quantity:{{cp.quantity}}</h5>
+                                        <h5>GH¢ {{cp.subtotal}}</h5>
+                                    </div>
+                                </td>
+
+                            </div>
+                        </tr>
+
+                        <hr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-lg-5 ">
+                <form class="form" method="post">
+                    <div class="card">
+                        <div class="card-header bg-success text-white"> Payment Information</div>
+                        <div class="card-body">
+                            <marquee behavior="" direction="">
+                                <h3 class="my-4">Please Payment is made on Delivery day, Thank You!</h3>
+                            </marquee>
+                        </div>
+                    </div>
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <button type="submit" class="order__button mt-5">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        const body = document.querySelector("body"),
+            nav = document.querySelector("nav"),
+            modeToggle = document.querySelector(".dark-light"),
+            searchToggle = document.querySelector(".searchToggle"),
+            sidebarOpen = document.querySelector(".sidebarOpen"),
+            siderbarClose = document.querySelector(".siderbarClose");
+
+        let getMode = localStorage.getItem("mode");
+        if (getMode && getMode === "dark-mode") {
+            body.classList.add("dark");
+        }
+
+        // js code to toggle dark and light mode
+        modeToggle.addEventListener("click", () => {
+            modeToggle.classList.toggle("active");
+            body.classList.toggle("dark");
+
+            // js code to keep user selected mode even page refresh or file reopen
+            if (!body.classList.contains("dark")) {
+                localStorage.setItem("mode", "light-mode");
+            } else {
+                localStorage.setItem("mode", "dark-mode");
+            }
+        });
+
+        // js code to toggle search box
+        searchToggle.addEventListener("click", () => {
+            searchToggle.classList.toggle("active");
+        });
+
+
+        //   js code to toggle sidebar
+        sidebarOpen.addEventListener("click", () => {
+            nav.classList.add("active");
+        });
+
+        body.addEventListener("click", e => {
+            let clickedElm = e.target;
+
+            if (!clickedElm.classList.contains("sidebarOpen") && !clickedElm.classList.contains("menu")) {
+                nav.classList.remove("active");
+            }
+        });
+
+    </script>
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/62f973fc54f06e12d88e9e44/1gaf6q5ch';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!-- Footer -->
+    <footer style="background:  #95e885; color: black;" class="mt-5">
+
+        <div class="logo">
+            <img src="{% static 'img/logo.png'%}" class="navbar_img">
+            <p> ANIDASOƆ PA HERBAL </p>
+        </div>
+
+        <div class="social_media_icons pt-2 mb-5">
+            <a href=""><i class="bi bi-facebook media_icons" style="color: black;"></i></a>
+            <a href=""><i class="bi bi-instagram px-3 media_icons" style="color: black;"></i></a>
+            <a href=""><i class="bi bi-twitter media_icons" style="color: black;"></i></a>
+
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{% static 'css/About.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'css/index.css'%}">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/logo.png'%}">
+
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+    <title>ABOUT</title>
+    <!Doctype html>
+    <html lang="en">
+
+
+<body>
+    <div id="section">
+        <nav>
+            <div class="nav-bar">
+                <i class='bx bx-menu sidebarOpen'></i>
+                <span class="logo navLogo">
+                    <img src="{% static 'img/logo.png'%}" class="logo3" style="height: 50px; width:50px">
+                    <a href="#" class="logo2">Anidasoc Pa Herbal</a>
+                </span>
+                <div class="darkLight-searchBox">
+                    <div class="dark-light">
+                        <i class='bx bx-moon moon'></i>
+                        <i class='bx bx-sun sun'></i>
+                    </div>
+
+                    <div class="searchBox">
+                        <div class="searchToggle">
+                            <i class='bx bx-x cancel'></i>
+                            <i class='bx bx-search search'></i>
+                        </div>
+
+                        <form class="search-field" method="get" action="/search">
+                            <input type="text" name="keyword" placeholder="Search..." required>
+                            <button><i class='bx bx-search'></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <div class="logo-toggle">
+                        <span class="logo"><a href="#">Anidosoc Pa Herbal</a></span>
+                        <i class='bx bx-x siderbarClose'></i>
+                    </div>
+
+                    <ul class="nav-links">
+                        <li><a href="{% url 'website-home'  %}">Home</a></li>
+                        <li>
+                            <a href="{% url 'website-cat'%}">Category</a>
+                        </li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                        <li><a href="{% url 'blog' %}">blogs & post</a></li>
+                        <li style="color: black;"> <a href="{% url 'mycart'  %}"><i id="icon"
+                                    class="fa-solid fa-cart-plus">
+                                </i></a>
+                        </li>
+
+                        {% if user.is_authenticated %}
+                        <li style="color: white;">
+                            <a href="{% url 'profile' %}"><span id="text">profile</span>
+                            </a>
+                        </li>
+                        <li style="color: white;">
+                            <a href="{% url 'user-logout' %}"><i class="fas fa-power-off"></i><span id="text"></span>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li style="color: black;">
+                            <a href="{% url 'user-login' %}"><span id="text">Sign in</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+
+            </div>
+        </nav>
+
+        <!-- Internal styles for only the testimonies -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            .slide-container {
+                max-width: 1120px;
+                width: 100%;
+                padding: 40px 0;
+            }
+
+            .slide-content {
+                margin: 0 40px;
+                overflow: hidden;
+                border-radius: 25px;
+            }
+
+            .card {
+                border-radius: 25px;
+                background-color: white;
+            }
+
+            .image-content,
+            .card-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 10px 14px;
+            }
+
+            .image-content {
+                position: relative;
+                row-gap: 5px;
+                padding: 25px 0;
+            }
+
+            .overlay {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                border-radius: 25px 25px 0 25px;
+            }
+
+            .overlay::before,
+            .overlay::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                bottom: -40px;
+                height: 40px;
+                width: 40px;
+            }
+
+            .card-image {
+                height: 130px;
+                width: 130px;
+                border-radius: 50%;
+                background: #FFF;
+                padding: 3px;
+            }
+
+            .card-image .card-img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+
+            }
+
+            .name {
+                font-size: 18px;
+                font-weight: 500;
+                color: #333;
+                margin-top: -10%;
+            }
+
+            .description {
+                font-size: 14px;
+                color: #707070;
+                text-align: center;
+            }
+
+            .button {
+                border: none;
+                font-size: 16px;
+                color: #FFF;
+                padding: 8px 16px;
+                background-color: #4070F4;
+                border-radius: 6px;
+                margin: 14px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .button:hover {
+                background: #265DF2;
+            }
+
+            .swiper-navBtn {
+                color: #6E93f7;
+                transition: color 0.3s ease;
+            }
+
+            .swiper-navBtn:hover {
+                color: #4070F4;
+            }
+
+            .swiper-navBtn::before,
+            .swiper-navBtn::after {
+                font-size: 15px;
+                border-radius: 60px;
+                width: 85%;
+            }
+
+            .swiper-button-next {
+                right: 0;
+                margin-top: 17.5%;
+                margin-right: 46%;
+                background: white;
+                border-radius: 60px;
+                height: 25px;
+                color: black;
+                text-align: center;
+            }
+
+            .swiper-button-prev {
+                left: 0;
+                margin-top: 17.5%;
+                margin-left: 46%;
+                background: white;
+                border-radius: 60px;
+                height: 25px;
+                color: black;
+                text-align: center;
+            }
+
+            .swiper-pagination-bullet {
+                background-color: #6E93f7;
+                opacity: 1;
+            }
+
+            .swiper-pagination-bullet-active {
+                background-color: #4070F4;
+            }
+
+            @media screen and (max-width: 768px) {
+                .slide-content {
+                    margin: 0 10px;
+                }
+
+                .swiper-navBtn {
+                    display: none;
+                }
+            }
+        </style>
+
+
+
+        </head><br>
+
+        <body style=" background-color: rgb(208, 208, 208);">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active slider-img">
+                        <img src="{% static 'img/doc (1).jpg'%}" class="d-block w-100 h-25" alt="...">
+                    </div>
+                    <div class="carousel-item slider-img">
+                        <img src="{% static 'img/doc.jpg'%}" class="d-block w-100 h-25" alt="...">
+                    </div>
+                    <div class="carousel-item slider-img">
+                        <img src="{% static 'img/doc (2).jpg'%}" class="d-block w-100 h-25" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon btn btn-primary" aria-hidden="true"
+                        style="border-radius: 60px;"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon text-primary btn btn-primary" aria-hidden="true"
+                        style="border-radius: 60px;"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div class="paragraghCont">
+                <div class="logo-div">
+                    <img src="{% static 'img/logo.png'%}" alt="Invalid image" class="logo d-block"
+                        style="width: 75px; height:78px; margin-left: 46%; margin-top: -2%; position: absolute;">
+                    <br><br> <br>
+                    <h3 class="text-center">ANIDASOƆ PA HERBAL
+                    </h3>
+                </div>
+                {% if about %}
+
+                <h5 class="lh-lg mt-5 text-center">ABOUT US</h5>
+                <p class="lh-2 m-4 para">{{about}}</p><br><br><br><br><br>
+                {% endif %}
+
+            </div>
+            {% if testimonies %}
+            <h1 class="testi-title text-center">TESTIMONIES</h1>
+            <div class="slide-container swiper testimony">
+                <div class="slide-content">
+                    <div class="card-wrapper swiper-wrapper">
+                        {% for test in testimonies %}
+                        <div class="card swiper-slide">
+                            <div class="image-content">
+                                <span class="overlay"></span>
+
+                                <div class="card-image">
+                                    <img src="{{test.image.url}}" alt="" class="card-img">
+                                </div>
+                            </div>
+
+                            <div class="card-content">
+                                <h2 class="name">{{test.name}}</h2>
+                                <p class="description">{{test.text}}
+                                </p>
+                                <button class="button"></button>
+
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div class="swiper-button-next swiper-navBtn"></div>
+                <div class="swiper-button-prev swiper-navBtn"></div>
+            </div>
+            {% endif %}
+
+            <footer style="background:  #95e885; color: black;">
+
+                <div class="logo">
+                    <img src="{% static 'img/logo.png'%}" class="navbar_img">
+                    <p> ANIDASOƆ PA HERBAL </p>
+                </div>
+
+                <div class="social_media_icons pt-2 mb-5">
+                    <a href=""><i class="bi bi-facebook media_icons" style="color: black;"></i></a>
+                    <a href=""><i class="bi bi-instagram px-3 media_icons" style="color: black;"></i></a>
+                    <a href=""><i class="bi bi-twitter media_icons" style="color: black;"></i></a>
+
+                </div>
+            </footer>
+            <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous"></script>
+            <script src="{% static 'js/About.js'%}"></script>
+        </body>
+
+</html>

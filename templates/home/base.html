@@ -18,6 +18,7 @@
     <!--FontAwesome CDN-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
         integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/95a0b08006.js" crossorigin="anonymous"></script>
 
     <!--Chartjs CDN-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
@@ -50,7 +51,8 @@
         <nav id="sidebar">
             <div class="sidebar-header">
                 <li>
-                    <img src="{% static 'img/logo.png'%}" class="img-fluid" /><span class="title">ANIDASO PA
+                    <a href="{% url 'website-home'  %}"><img src="{% static 'img/logo.png'%}"
+                            class="img-fluid" /></a><span class="title">ANIDASO PA
                         HERBALS</span>
                 </li>
             </div>
@@ -61,46 +63,22 @@
                 </li>
 
                 <div class="small-screen navbar-display">
-                    <li class="dropdown d-lg-none d-md-block d-xl-none d-sm-block">
-                        <a href="#homeSubmenu0" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <i class="material-icons">notifications</i><span> 4 notification</span></a>
-                        <ul class="collapse list-unstyled menu" id="homeSubmenu0">
-                            <li>
-                                <a href="#">You have 5 new messages</a>
-                            </li>
-                            <li>
-                                <a href="#">You're now friend with Mike</a>
-                            </li>
-                            <li>
-                                <a href="#">Wish Mary on her birthday!</a>
-                            </li>
-                            <li>
-                                <a href="#">5 warnings in Server Console</a>
-                            </li>
-                        </ul>
-                    </li>
 
-                    <li class="d-lg-none d-md-block d-xl-none d-sm-block">
-                        <a href="#"><i class="material-icons">person</i><span>user</span></a>
-                    </li>
 
                     <li class="d-lg-none d-md-block d-xl-none d-sm-block">
                         <a href="{% url 'change-password'%}"><i
                                 class="material-icons">settings</i><span>setting</span></a>
                     </li>
                     <li class="d-lg-none d-md-block d-xl-none d-sm-block">
-                        <a href="{% url 'logout' %}"><i class="fas fa-power-off"></i><span>Logout</span></a>
+                        <a href="{% url 'logout' %}"><i class="fas fa-sign-out"></i><span>Logout</span></a>
                     </li>
                 </div>
-                <li class="item">
-                    <a href="#"><i class="material-icons">notifications</i><span>notifications</span></a>
-                </li>
                 <li class="item">
                     <a href="{% url 'dashboard-user'%}"><i class="fas fa-users"></i><span>Users</span></a>
                 </li>
 
                 <li class="item">
-                    <a href="{% url 'dashboard-category'%}"><i class="fas fa-box"></i><span>category</span></a>
+                    <a href="{% url 'dashboard-category'%}"><i class="fas fa-braille"></i><span>category</span></a>
                 </li>
                 <li class="item">
                     <a href="{% url 'dashboard-product'%}"><i class="fas fa-box"></i><span>product</span></a>
@@ -121,10 +99,16 @@
 
 
                 <li class="item">
-                    <a href="{% url 'dashboard-post'%}"><i class="fas fa-box"></i><span>post</span></a>
+                    <a href="{% url 'dashboard-post'%}"><i class="fas fa-newspaper"></i><span>post</span></a>
                 </li>
                 <li class="item">
-                    <a href="{% url 'dashboard-message'%}"><i class="fas fa-box"></i><span>message</span></a>
+                    <a href="{% url 'dashboard-message'%}"><i class="fas fa-envelope"></i><span>message</span></a>
+                </li>
+                <li class="item">
+                    <a href="{% url 'testimony'%}"><i class="fas fa-thumbs-up"></i><span>Add Testimony</span></a>
+                </li>
+                <li class="item">
+                    <a href="{% url 'about_us'%}"><i class="fas fa-pen-square"></i><span>Add About Us</span></a>
                 </li>
 
 
@@ -169,40 +153,16 @@
                         <div class="collapse navbar-collapse d-lg-block d-xl-block d-sm-none d-md-none d-none"
                             id="navbarSupportedContent">
                             <ul class="nav navbar-nav ml-auto">
-                                <li class="dropdown nav-item active">
-                                    <a href="#" class="nav-link" data-toggle="dropdown">
-                                        <span class="material-icons">notifications</span>
-                                        <span class="notification">4</span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">You have 5 new messages</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You're now friend with Mike</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Wish Mary on her birthday!</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">5 warnings in Server Console</a>
-                                        </li>
-                                    </ul>
-                                </li>
+
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <span class="material-icons">person</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'change-password'%}">
+                                    <a class="nav-link" href="{% url 'change-password'%}" style="color: inherit;">
                                         <span class="material-icons">settings</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'logout'%}">
-                                        <i class="fas fa-power-off"></i><span></span>
+                                    <a class="nav-link" href="{% url 'logout'%}" style="color: inherit;">
+                                        <i class="fas fa-sign-out"></i><span></span>
                                     </a>
                                 </li>
                             </ul>

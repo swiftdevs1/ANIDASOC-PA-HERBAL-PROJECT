@@ -11,7 +11,7 @@
     <div class="row my-4">
         <div class="col-md-12">
             <table class="table bg-white">
-                <thead class="bg-success">
+                <thead class="" style="background:  #1e6225;">
                     <tr class="text-white">
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
@@ -27,8 +27,8 @@
                         <td> <textarea name="" id="" cols="30" rows="4"
                                 style="outline: none; border: none; resize: none;">{{message.message}}</textarea></td>
                         <td>
-                            <a class="btn btn-success btn-sm" href="{% url 'del_message' message.id %}"><i
-                                    class="fas fa-trash"></i></a>
+                            <a class="btn  btn-sm" style="background:  #1e6225;"
+                                href="{% url 'del_message' message.id %}"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     {% endfor %}

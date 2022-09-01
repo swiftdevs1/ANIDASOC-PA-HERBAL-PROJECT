@@ -6,6 +6,7 @@ class Category(models.Model):
     title = models.CharField(max_length=200)
     slug = models.CharField(max_length=200, null=False, blank=False)
     status = models.BooleanField(default=False, help_text='0=default, 1=Hidden')
+    image = models.ImageField(upload_to='cat_img')
     
     class Meta:
         verbose_name_plural = 'Category'
@@ -64,7 +65,7 @@ ORDER_STATUS = (
 class Order(models.Model):
     cart = models.OneToOneField(Cart, on_delete=models.CASCADE)
     ordered_by = models.CharField(max_length=200)
-    shipping_address = models.CharField(max_length=200)
+    location = models.CharField(max_length=200)
     mobile = models.CharField(max_length=10)
     email = models.EmailField(null=True, blank=True)
     subtotal = models.PositiveIntegerField()

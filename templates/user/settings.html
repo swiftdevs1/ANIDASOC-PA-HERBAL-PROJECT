@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Css link  -->
+    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+    <link rel="stylesheet" href="{% static 'css/pop.css'%}">
+    <title>PROFILE PAGE</title>
+</head>
+
+<body>
+    <div class="container-fluid p-0">
+        <div class="header bg-success p-1">
+            <a href="{% url 'website-home'  %}" style="color: black;"><i class="bi bi-house-door-fill"></i></a>
+            <img src="{{user.profile.image.url}}" alt="Avatar" class="avatar">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4  col-sm-12">
+            <div class="sidebar pt-5">
+                <div class="view_orders">
+                    <a href="{% url 'user_home' %}" style="color: inherit;"><i class="bi bi-cart-check-fill"></i> <span
+                            class="sidebar_item">
+                            View Orders </span></a>
+                </div>
+
+                <div class="profile ">
+                    <a href="{% url 'profile' %}" style="color: inherit;"><i class="bi bi-person-fill"></i> <span
+                            class="sidebar_item">
+                            Profile</span></a>
+                </div>
+                <div class="setting active">
+                    <a href="{% url 'setting' %}" style="color: inherit;"><i class="bi bi-gear-fill"></i> <span
+                            class="sidebar_item">
+                            settings</span></a>
+                </div>
+                <div class="logout">
+                    <i class="bi bi-box-arrow-in-right"></i> <span class="sidebar_item" onclick="openPopup()"
+                        style="cursor: pointer;">
+                        Logout</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6 my-5">
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}} " role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Current Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="current" class="form-control" id="inputEmail3" required
+                            placeholder="current password">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">New Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="new" class="form-control" id="inputPassword3" required
+                            placeholder="new password">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm New Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="new1" class="form-control" id="inputPassword3" required
+                            placeholder="confirm new password">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Change</button>
+            </form>
+            <div class="popup" id="popup">
+                <p>Are you sure, you want to logout?</p>
+                <div class="rows">
+                    <div><a href=""><button type="" class="cancel" onclick="closePopup()">Cancel</button></a>
+                    </div>
+                    <div></div><a href="{% url 'user-logout' %}"><button type="" class="log">logout</button></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let popup = document.getElementById('popup')
+        function openPopup() {
+            popup.classList.add('open-pop')
+        }
+        function closePopup() {
+            popup.classList.remove('open-pop')
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

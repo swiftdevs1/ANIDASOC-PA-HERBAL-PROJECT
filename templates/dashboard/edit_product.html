@@ -10,8 +10,8 @@
         <form method="POST">
             {% csrf_token %}
             {{ form|crispy }}
-            <a class="btn btn-secondary btn-sm" href="{% url 'dashboard-product' %}">Cancel</a>
-            <input class="btn btn-info" type="submit" value="Confirm">
+            <a class="btn text-white" style="background:  #1e6225;" href="{% url 'dashboard-product' %}">Cancel</a>
+            <input class="btn text-white" type="submit" value="Confirm" style="background:  #1e6225;">
         </form>
     </div>
 </div>

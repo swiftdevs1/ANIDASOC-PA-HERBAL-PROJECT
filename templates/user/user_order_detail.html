@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- Css link  -->
+    <link rel="stylesheet" href="{% static 'css/home.css'%}">
+    <title>Order history</title>
+</head>
+
+<body>
+    <div class="container-fluid p-0">
+        <div class="header bg-success p-1">
+            <a href="{% url 'website-home'  %}" style="color: black;"><i class="bi bi-house-door-fill"></i></a>
+            <img src="{{user.profile.image.url}}" alt="Avatar" class="avatar">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4  col-sm-12">
+            <div class="sidebar pt-5">
+                <div class="view_orders active">
+                    <a href="{% url 'user_home' %}" style="color: inherit;"><i class="bi bi-cart-check-fill"></i> <span
+                            class="sidebar_item">
+                            View Orders </span></a>
+                </div>
+
+                <div class="profile">
+                    <a href="{% url 'profile' %}" style="color: inherit;"><i class="bi bi-person-fill"></i> <span
+                            class="sidebar_item">
+                            Profile</span></a>
+                </div>
+                <div class="setting">
+                    <a href="{% url 'setting' %}" style="color: inherit;"><i class="bi bi-gear-fill"></i> <span
+                            class="sidebar_item">
+                            settings</span></a>
+                </div>
+                <div class="logout">
+                    <a href="{% url 'user-logout' %}" style="color: inherit;"><i class="bi bi-box-arrow-in-right"></i>
+                        <span class="sidebar_item">Logout</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8 pt-5  mt-5 pb-5">
+            <p class="text-center p "> Order History</p>
+            {% for cp in ord_obj.cart.cartproduct_set.all%}
+            <div class="row product__details">
+                <div class="row">
+                    <div class="col-lg-4 ">
+                        <ul>
+                            <li> {{cp.order_status}}</li>
+                        </ul>
+                        <img src="{{cp.product.image.url}}" alt="medicine" style="width: 80%;">
+                    </div>
+                    <div class="col-lg-8 md-8 ">
+                        <p class=" mt-5 product__name"> {{cp.product.title}}</p>
+                        <p>GH¢ {{cp.product.selling_price}} </p>
+                        <a href="{% url 'website-product-detail' cp.product.id %}"> <button class="bt"> View product
+                                details</button></a>
+                        <p> </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

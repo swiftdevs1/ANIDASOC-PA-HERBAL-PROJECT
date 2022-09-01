@@ -1,0 +1,49 @@
+{% extends 'home/base.html'%}
+{% block title %}PRODUCT PAGE{% endblock %}
+{% block content%}
+{% load crispy_forms_tags %}
+
+
+<div class="container">
+    <div class="row my-4">
+        <div class="col-md-6">
+            <div class="border bg-white p-3">
+                <h4 class="text-success">Write About Us</h4>
+                <hr>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{about_form|crispy}}
+                    <input class="btn text-white btn-block" type="submit" value="Add Product"
+                        style="background:  #1e6225;">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <table class="table bg-white">
+                <thead class="" style="background:  #1e6225;">
+                    <tr class="text-white">
+                        <th scope="col">text</th>
+                        <th scope="col">edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for about in about %}
+                    <tr>
+                        <td> <textarea name="" id="" cols="30" rows="4"
+                                style="outline: none; border: none; resize: none;">{{about.message|truncatewords:10}}</textarea>
+                        </td>
+                        <td>
+                            <a class="btn btn-success btn-sm" href="{% url 'edit_about' about.id %}"><i
+                                    class="fas fa-pen"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!--End Table-->
+{% endblock%}

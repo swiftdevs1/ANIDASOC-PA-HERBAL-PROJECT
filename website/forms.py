@@ -1,6 +1,6 @@
 from django import forms
 from dashboard.models import Order
-from website.models import Blog, Contact
+from website.models import *
 
 
 class ContactForm(forms.ModelForm):
@@ -11,4 +11,9 @@ class ContactForm(forms.ModelForm):
 class CheckoutForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['ordered_by', 'shipping_address', 'mobile', 'email']
+        fields = ['ordered_by', 'location', 'mobile', 'email']
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['name','review','rate']

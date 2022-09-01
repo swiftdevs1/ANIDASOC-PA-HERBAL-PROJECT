@@ -11,7 +11,7 @@
 
         <div class="col-md-12">
             <table class="table bg-white">
-                <thead class="bg-success">
+                <thead class="" style="background:  #1e6225;">
                     <tr class="text-white">
                         <th scope="col">#</th>
                         <th scope="col">Customer</th>
@@ -25,7 +25,7 @@
                     {% for order in orders %}
 
                     <tr>
-                        <th scope="row"><a class="btn btn-success btn-sm text-white"
+                        <th scope="row"><a class="btn  btn-sm text-white" style="background:  #1e6225;"
                                 href="{% url 'dashboard-order-detail' order.id %}">View</a>
                         </th>
                         <td>{{order.ordered_by}}</td>

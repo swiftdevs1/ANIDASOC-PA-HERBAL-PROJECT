@@ -3,24 +3,29 @@ from django.contrib import messages
 from dashboard.models import *
 from website.models import *
 from django.views.generic import View, TemplateView,CreateView
-from.forms import CheckoutForm,ContactForm
+from.forms import *
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.db.models import Q
+from django.core.mail import send_mail
+from anidoso import settings
 from django.utils.html import strip_tags
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class EcomMixin(object):
     def dispatch(self, request, *args, **kwargs):
-        cart_id = request.session.get('cart_id')
+        cart_id = request.session.get('cart_id')                
+        print("dispatch")
+
         if cart_id:
             cart_obj = Cart.objects.get(id=cart_id)
-            if request.user.is_authenticated and request.user.customer:
-                cart_obj.customer = request.user.customer
+            if request.user.is_authenticated:
+                cart_obj.user = request.user
                 cart_obj.save()
         return super().dispatch(request, *args, **kwargs)
 
+# ******************* LANDING PAGE  VIEW *****************************
 def home(request):
     product = Product.objects.all().order_by('-id')
     context = {
@@ -28,6 +33,7 @@ def home(request):
     }
     return render(request, 'website/home.html',context)
 
+# ******************* PRODUCT CATEGORY VIEW *****************************
 def category(request):
     category = Category.objects.all()
     context ={
@@ -35,6 +41,7 @@ def category(request):
     }
     return render(request, 'website/cat.html', context)
 
+# ******************* CATEGORY RELATED PRODUCT VIEW *****************************
 def collection(request, slug):
     if(Category.objects.filter(slug=slug)):
         product = Product.objects.filter(category__slug=slug)
@@ -47,24 +54,24 @@ def collection(request, slug):
         messages.warning(request, 'no such category exist')
     return render(request, 'website/cat_filter.html',context)
 
+# ******************* PRODUCT DETAILS VIEW *****************************
 def product_details(request,pk):
     product = Product.objects.get(id=pk)
+    reviews = Review.objects.filter(product=product)
     context = {
-        'product':product
+        'product':product,
+        'reviews': reviews
     }
     return render(request, 'website/product_detail.html',context)
 
-class AddToCartView(EcomMixin,TemplateView):
+# ******************* ADD TO CART VIEW *****************************
+class AddToCartView(View):
     template_name = "website/add_to_cart.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # get product id from requested url
-        product_id = self.kwargs['pro_id']
+    def get(self,request,pro_id):
         # get product
-        product_obj = Product.objects.get(id=product_id)
-
+        product_obj = Product.objects.get(id=pro_id)
         # check if cart exists
-        cart_id = self.request.session.get("cart_id", None)
+        cart_id = request.session.get("cart_id", None)
         if cart_id:
             cart_obj = Cart.objects.get(id=cart_id)
             this_product_in_cart = cart_obj.cartproduct_set.filter(
@@ -87,16 +94,19 @@ class AddToCartView(EcomMixin,TemplateView):
                 return redirect('website-home')
         else:
             cart_obj = Cart.objects.create(total=0)
-            self.request.session['cart_id'] = cart_obj.id
+            request.session['cart_id'] = cart_obj.id
             cartproduct = CartProduct.objects.create(
                 cart=cart_obj, product=product_obj, rate=product_obj.selling_price, quantity=1, subtotal=product_obj.selling_price)
             cart_obj.total += product_obj.selling_price
             cart_obj.save()
-        return context
+        
+        if request.user.is_authenticated:
+            cart_obj.customer = request.user
+            cart_obj.save()
         return redirect('website-home')
         
         
-
+# ******************* MANAGE CART  VIEW *****************************
 class ManageCartView(View):
 
     def get(self, request, *args, **kwargs):
@@ -127,6 +137,7 @@ class ManageCartView(View):
             pass
         return redirect('mycart')
 
+# ******************* CART VIEW *****************************
 class MyCartView(EcomMixin,TemplateView):
     template_name = 'website/my_cart.html'
 
@@ -140,7 +151,7 @@ class MyCartView(EcomMixin,TemplateView):
         context['cart'] = cart
         return context 
 
-
+# ******************* EMPTY CART VIEW *****************************
 class EmptyCartView(View):
     def get(self, request, *args, **kwargs):
         cart_id = request.session.get('cart_id', None)
@@ -150,11 +161,12 @@ class EmptyCartView(View):
             cart.total = 0
             cart.save()  
         return redirect('mycart') 
-        
+
+# ******************* CHECK-OUT VIEW *****************************
 class CheckOutView(EcomMixin, CreateView):
     template_name = 'website/checkout.html'
     form_class = CheckoutForm
-    success_url = reverse_lazy('website-home')
+    success_url = reverse_lazy('order_success')
     
     def dispatch(self, request, *args, **kwargs): 
         if request.user.is_authenticated:
@@ -182,12 +194,20 @@ class CheckOutView(EcomMixin, CreateView):
             form.instance.discount = 0
             form.instance.total = cart_obj.total
             form.instance.order_status = "Order Received"
+            name = form.cleaned_data.get('ordered_by')
+            email = form.cleaned_data.get('email')
+            # sending email to corresponding email.
+            subject = "Order Received"
+            message = "hello" + " " + name + " !! \n" + " We have received your order(s) \n" + "Our agent will contact you soon for delivery \n" + " Thank You !!"
+            from_email = settings.EMAIL_HOST_USER
+            to_list = [email]
+            send_mail(subject, message, from_email, to_list, fail_silently=True)
             del self.request.session['cart_id']
         else:
             return redirect('website-home')
         return super().form_valid(form)
 
-
+# ******************* BLOG VIEW *****************************
 def blog(request):
     posts = Blog.objects.all().order_by('-id')
     context = {
@@ -195,12 +215,21 @@ def blog(request):
     }
     return render(request,'website/blogs.html',context)
 
+# ******************* ABOUT VIEW *****************************
 def about(request):
-    return render(request,'website/about.html')
+    testimonies = Testimony.objects.all().order_by('id')
+    about = About.objects.first()
+    context = {
+        'testimonies': testimonies,
+        'about': about
+    }
+    return render(request,'website/about.html', context)
 
+# ******************* CONTACT US VIEW *****************************
 def contact(request):
     return render(request,'website/contact.html')
 
+# ******************* RECEIVE CONTACT US INFO VIEW *****************************
 def send(request):
     form = ContactForm(request.POST)
     if form.is_valid():
@@ -213,6 +242,7 @@ def send(request):
             messages.error(request,f"{field}: {error}")
             return redirect('contact')
 
+# ******************* SEARCH PRODUCT VIEW *****************************
 def search(request):
     if request.method == 'GET':
         kw = request.GET['keyword']
@@ -221,3 +251,28 @@ def search(request):
             'result':result
         }
     return render(request,'website/search.html',context)
+
+# ******************* ORDER SUCCESSFULL VIEW *****************************
+@login_required(login_url="user-login")   
+def order_success(request):
+
+    return render(request, 'website/success.html')
+
+# ******************* PRODUCT REVIEW VIEW *****************************
+def review(request):
+    if request.method == 'POST':
+        pro_id = request.POST['pro_id']
+        product = Product.objects.get(id=pro_id)
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.instance.product = product
+            form.save()
+        return redirect(request.META.get('HTTP_REFERER'))
+    else:
+        form = ReviewForm()
+        for field, error in form.errors.items():
+            error = strip_tags(error)
+            messages.error(request,f"{field}: {error}")
+            return redirect(request.META.get('HTTP_REFERER'))
+
+    
