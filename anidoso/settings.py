@@ -132,11 +132,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 import os
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
 MEDIA_URL = '/media/'
+#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 #STATIC_ROOT = (BASE_DIR/"asert/")
