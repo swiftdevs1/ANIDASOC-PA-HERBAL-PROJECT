@@ -129,16 +129,17 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
+import os
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-MEDIA_ROOT = (BASE_DIR/"media/")
 
 MEDIA_URL = '/media/'
-
-STATIC_ROOT = (BASE_DIR/"asert/")
+STATIC_ROOT = os.path.join(BASE_DIR, 'asert/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+#STATIC_ROOT = (BASE_DIR/"asert/")
 LOGIN_REDIRECT_URL = 'website-home'
 
 
