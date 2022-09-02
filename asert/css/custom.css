@@ -15,7 +15,10 @@ html {
 body {
   background: rgb(230, 227, 227);
 }
-
+.order{
+  outline: #d9534f;
+  border: 1px solid green;
+}
 .my-card:hover {
   transform: scale(1.1);
   transition: 0.2s ease-in-out;

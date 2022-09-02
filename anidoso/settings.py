@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-hacjj(0khd*-&6^u@oim-ac(b(50esp4p)s7^h!4^xf^2p9n)z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['137.184.134.232']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -66,7 +66,7 @@ ROOT_URLCONF = 'anidoso.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,15 +129,16 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-import os
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+MEDIA_ROOT = (BASE_DIR/"media/")
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#STATIC_ROOT = (BASE_DIR/"asert/")
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = (BASE_DIR/"asert/")
 LOGIN_REDIRECT_URL = 'website-home'
 
 

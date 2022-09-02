@@ -1,0 +1,250 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#section {
+  background-color: #e3f8f8;
+}
+
+/* Navigation Bar */
+
+.navbar {
+  background-color: #3fb7b6;
+}
+
+.navbar_img {
+  width: 30px;
+}
+
+#navmenu {
+  margin-right: 310px;
+}
+#navmenu a:hover {
+  color: rgb(255, 174, 0);
+}
+
+.navbar-toggler {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: 0.5s ease-in-out;
+}
+
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
+  border: 0;
+  position: relative;
+}
+
+.navbar-toggler span {
+  margin: 0;
+  padding: 0;
+}
+
+.toggler-icon {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #fff;
+  border-radius: 1px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.middle-bar {
+  margin-top: 0px;
+}
+
+/* State when the navbar is collapsed */
+
+.navbar-toggler.collapsed .top-bar {
+  position: absolute;
+  top: 0px;
+  transform: rotate(0deg);
+}
+
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+  position: absolute;
+  top: 10px;
+  filter: alpha(opacity=100);
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+  position: absolute;
+  top: 20px;
+  transform: rotate(0deg);
+}
+
+/* when navigation is clicked */
+
+.navbar-toggler .top-bar {
+  top: inherit;
+  transform: rotate(135deg);
+}
+
+.navbar-toggler .middle-bar {
+  opacity: 0;
+  top: inherit;
+  filter: alpha(opacity=0);
+}
+
+.navbar-toggler .bottom-bar {
+  top: inherit;
+  transform: rotate(-135deg);
+}
+
+/* Color of 3 lines */
+
+.navbar-toggler.collapsed .toggler-icon {
+  background: linear-gradient(
+    263deg,
+    rgb(255, 255, 255) 0%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.brand_name {
+  font-size: 11px;
+  font-weight: bolder;
+}
+
+#navmenu li a {
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  padding: 12px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+#navmenu {
+  padding-left: 200px;
+}
+
+.row-centered {
+  text-align: center;
+}
+.col-centered {
+  display: inline-block;
+  float: none;
+  text-align: left;
+  margin-right: -4px;
+}
+.pos {
+  position: relative;
+  top: 10px;
+}
+
+#details {
+  font-size: 2rem;
+}
+
+.stars {
+  font-size: 1.2rem;
+}
+
+.productstars {
+  font-size: 1.1rem;
+}
+
+.pluses {
+  font-size: 1.4rem;
+}
+
+.media_icons {
+  font-size: 1.5rem;
+}
+
+.asterisk {
+  font-size: 0.5rem;
+  /* font-weight: 300; */
+}
+
+.productimg {
+  width: 100%;
+  height: 100%;
+}
+
+.pdetails {
+  text-align: justify;
+}
+
+.border {
+  /* border-color: rgb(208, 208, 208); */
+  background-color: rgb(208, 208, 208);
+}
+
+.reviewimg {
+  width: 100%;
+  height: 100%;
+}
+
+#Reviews {
+  background-color: rgb(208, 208, 208);
+}
+
+/* Footer */
+
+footer {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  background: #5b9ad4;
+  color: white;
+  padding: 50px 0 15px;
+  /* margin-top: -125px;
+	border-top-left-radius: 125px;
+	border-top-right-radius: 125px; */
+  font-size: 13px;
+  line-height: 20px;
+}
+.cont {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.cont .star-widget input {
+  display: none;
+}
+
+.cont .star-widget label {
+  font-size: 20px;
+  padding: 10px;
+  float: right;
+  transition: all 0.2s ease;
+}
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover ~ label {
+  color: #fd4;
+}
+input:checked ~ label {
+  color: #fd4;
+}
+input#rate-5:checked ~ label {
+  color: #fe7;
+  text-shadow: 0 0 20px #952;
+}
+#rate-1:checked ~ form header:before {
+  content: "I just hate it ";
+}
+#rate-2:checked ~ form header:before {
+  content: "I don't like it ";
+}
+#rate-3:checked ~ form header:before {
+  content: "It is awesome ";
+}
+#rate-4:checked ~ form header:before {
+  content: "I just like it ";
+}
+#rate-5:checked ~ form header:before {
+  content: "I just love it ";
+}
